@@ -1,0 +1,62 @@
+<ng-container *ngIf="!isReady">
+    <p>Cargando... {{ percentage }}%</p>
+    <p>Actualizado 25-mar-2021 3:40pm</p>
+</ng-container>
+  
+<div #unityEl id="gameContainer" 
+      style="display: block; max-width: 75%; max-height: 75%; margin: auto;">
+</div>
+
+<p>v0.6.0</p>
+
+<ng-template #contentImg let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Examen físico: {{ examenFisico }}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <img [src]="imgUrl" style="display: block; max-width: 76%; max-height: 76%; margin: auto">
+    </div>
+</ng-template>
+
+<ng-template #contentAudio let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Examen físico: {{ examenFisico }}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <audio style="display: block; margin: auto;" [src]="audioUrl" controls autoplay muted>
+            Su navegador no puede reproducir este audio. Por favor use Google Chrome para una mejor experiencia.
+        </audio>
+    </div>
+</ng-template>
+
+<ng-template #contentLabs let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ayudas diagnósticas ({{ labActual+1 }} de {{ labsTotales }})</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <h5>{{ titleLab }}</h5>
+
+        <ng-container *ngIf="labText">
+            <p>Resultado:</p>
+            <pre>{{ valorLab }}</pre>
+        </ng-container>
+
+        <ng-container *ngIf="labImg">
+            <img [src]="urlImgLab" style="display: block; max-width: 75%; max-height: 75%; margin: auto">
+        </ng-container>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="anteriorLab()">Anterior</button>
+        <button type="button" class="btn btn-outline-dark" (click)="siguienteLab()">Siguiente</button>
+    </div>
+</ng-template>

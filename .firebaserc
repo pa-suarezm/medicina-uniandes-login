@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "medicina-uniandes": {
+      "hosting": {
+        "unity-test": [
+          "medicina-uniandes"
+        ]
+      }
+    }
+  }
+}
