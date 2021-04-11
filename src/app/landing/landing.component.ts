@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
-import { AccountInfo } from '@azure/msal-common';
+import { AccountInfo, AuthenticationResult } from '@azure/msal-common';
 
 @Component({
   selector: 'app-landing',
@@ -11,16 +11,22 @@ export class LandingComponent implements OnInit {
 
   constructor(private msalService: MsalService) { }
 
-  name: string;
-  username: string;
   account: AccountInfo;
 
+  login() {
+    this.msalService.loginPopup().subscribe( (response: AuthenticationResult) => {
+      this.msalService.instance.setActiveAccount(response.account);
+      this.account = this.msalService.instance.getActiveAccount();
+    });
+  }
+
+  logout() {
+    this.account = null;
+    this.msalService.logout();
+  }
+
   ngOnInit(): void {
-    this.account = this.msalService.instance.getActiveAccount();
-    if (this.account != null) {
-      this.name = this.account.name;
-      this.username = this.account.username;
-    }
+    
   }
 
 }

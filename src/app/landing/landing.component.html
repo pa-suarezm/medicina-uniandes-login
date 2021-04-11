@@ -9,15 +9,20 @@
     <br />
     <div *ngIf="account == null" class="row">
         <div class="col-md-12 text-center">
-            <button routerLink="/" class="btn btn-login">
+            <button class="btn btn-login" (click)="login()">
                 Sign in
             </button>
         </div>
     </div>
     <div *ngIf="account != null" class="row">
         <div class="col-md-12 text-center">
-            <button routerLink="/" class="btn btn-login">
+            <h4><strong>Usuario:</strong> {{account.username}}</h4>
+            <button routerLink="/simulador" class="btn btn-login">
                 Simulador
+            </button>
+            <p><strong>Atención:</strong> si el usuario no coincide con tu usuario, por favor cierra sesión con el botón de abajo e intenta de nuevo.</p>
+            <button class="btn btn-logout" (click)="logout()">
+                Sign out
             </button>
         </div>
     </div>

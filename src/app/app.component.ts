@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MsalService } from '@azure/msal-angular';
+import { AuthenticationResult } from '@azure/msal-common';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +10,6 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'unity-test';
+
+  constructor (private msalService: MsalService) {}
 }
