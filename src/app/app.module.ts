@@ -24,13 +24,14 @@ import {
   MsalBroadcastService
 } from "@azure/msal-angular";
 import { IPublicClientApplication, PublicClientApplication, InteractionType, BrowserCacheLocation } from "@azure/msal-browser";
+import { LoginFailedComponent } from './login-failed/login-failed.component';
 
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     auth: {
       clientId: "9718a786-ef92-46b9-9987-49ed9cf15fca",
       authority: "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/",
-      redirectUri: "https://medicina-uniandes-dev.vercel.app/",
+      redirectUri: "https://medicina-uniandes-dev.vercel.app/simulador",
       postLogoutRedirectUri: "https://medicina-uniandes-dev.vercel.app/"
     },
     cache: {
@@ -56,14 +57,15 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     authRequest: {
       scopes: ['user.read']
     },
-    loginFailedRoute: "./login-failed"
+    loginFailedRoute: "/login-failed"
   };
 }
 @NgModule({
   declarations: [
     AppComponent,
     UnityComponent,
-    LandingComponent
+    LandingComponent,
+    LoginFailedComponent
   ],
   imports: [
     BrowserModule,
