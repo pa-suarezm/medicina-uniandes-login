@@ -6,7 +6,7 @@ import { LoginFailedComponent } from '../login-failed/login-failed.component';
 import { UnityComponent } from '../unity/unity.component';
 
 const routes: Routes = [
-    { path: 'simulador', component: UnityComponent, canActivate: [MsalGuard] },
+    { path: 'simulador', component: UnityComponent/*, canActivate: [MsalGuard] */},
     { path: 'login-failed', component: LoginFailedComponent},
     { path: '', component: LandingComponent}
 ];

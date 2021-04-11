@@ -33,12 +33,12 @@ export function MSALInstanceFactory(): IPublicClientApplication {
       authority: "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/",
       //Debe ser el root porque así fue configurado el redirectUri en Azure por la DSIT
       redirectUri: "https://medicina-uniandes-dev.vercel.app/",
-      postLogoutRedirectUri: "https://medicina-uniandes-dev.vercel.app/"
-    },
+      postLogoutRedirectUri: "https://medicina-uniandes-dev.vercel.app/"      
+    }/*,
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
       storeAuthStateInCookie: false, // set to true for IE 11
-    },
+    },*/
   });
 }
 
@@ -86,7 +86,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     {
       provide: MSAL_INSTANCE,
       useFactory: MSALInstanceFactory
-    },
+    },/*
     {
       provide: MSAL_GUARD_CONFIG,
       useFactory: MSALGuardConfigFactory
@@ -96,7 +96,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
       useFactory: MSALInterceptorConfigFactory
     },
     MsalGuard,
-    MsalBroadcastService,
+    MsalBroadcastService,*/
     MsalService
   ],
   bootstrap: [AppComponent]

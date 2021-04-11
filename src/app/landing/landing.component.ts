@@ -11,17 +11,17 @@ export class LandingComponent implements OnInit {
 
   constructor(private msalService: MsalService) { }
 
-  account: AccountInfo;
+  isLoggedIn(): boolean {
+    return this.msalService.instance.getActiveAccount() != null;
+  }
 
   login() {
     this.msalService.loginPopup().subscribe( (response: AuthenticationResult) => {
       this.msalService.instance.setActiveAccount(response.account);
-      this.account = this.msalService.instance.getActiveAccount();
     });
   }
 
   logout() {
-    this.account = null;
     this.msalService.logout();
   }
 
