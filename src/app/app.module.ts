@@ -56,7 +56,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   return { 
     interactionType: InteractionType.Redirect,
     authRequest: {
-      scopes: ['user.read']
+      scopes: ["user.read"]
     },
     loginFailedRoute: "login-failed"
   };
@@ -81,7 +81,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
-      multi: true
+      multi: false
     },
     {
       provide: MSAL_INSTANCE,

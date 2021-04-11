@@ -11,7 +11,7 @@ export class LoginFailedComponent implements OnInit {
   constructor(private _msalService: MsalService) { }
 
   name: string;
-  username:string;
+  username: string;
 
   ngOnInit(): void {    
     const account = this._msalService.instance.getActiveAccount();
