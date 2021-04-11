@@ -81,7 +81,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MsalInterceptor,
-      multi: false
+      multi: true
     },
     {
       provide: MSAL_INSTANCE,
