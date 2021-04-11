@@ -31,7 +31,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     auth: {
       clientId: "9718a786-ef92-46b9-9987-49ed9cf15fca",
       authority: "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/",
-      redirectUri: "https://medicina-uniandes-dev.vercel.app/simulador",
+      redirectUri: "https://medicina-uniandes-dev.vercel.app/",
       postLogoutRedirectUri: "https://medicina-uniandes-dev.vercel.app/"
     },
     cache: {
