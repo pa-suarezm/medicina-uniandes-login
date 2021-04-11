@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MsalService } from '@azure/msal-angular';
 
 @Component({
   selector: 'app-login-failed',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginFailedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _msalService: MsalService) { }
 
-  ngOnInit(): void {
+  name: string;
+  username:string;
+
+  ngOnInit(): void {    
+    const account = this._msalService.instance.getActiveAccount();
+    this.name = account.name;
+    this.username = account.username;
   }
 
 }

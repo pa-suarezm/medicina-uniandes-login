@@ -31,6 +31,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
     auth: {
       clientId: "9718a786-ef92-46b9-9987-49ed9cf15fca",
       authority: "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/",
+      //Debe ser el root porque así fue configurado el redirectUri en Azure por la DSIT
       redirectUri: "https://medicina-uniandes-dev.vercel.app/",
       postLogoutRedirectUri: "https://medicina-uniandes-dev.vercel.app/"
     },
@@ -42,8 +43,8 @@ export function MSALInstanceFactory(): IPublicClientApplication {
 }
 
 export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
-  const protectedResourceMap = null; //new Map<string, Array<string>>();
-  //protectedResourceMap.set("https://graph.microsoft.com/v1.0/me", ["user.read"]);
+  const protectedResourceMap = new Map<string, Array<string>>();
+  protectedResourceMap.set("https://graph.microsoft.com/v1.0/me", ["user.read"]);
 
   return {
     interactionType: InteractionType.Redirect,

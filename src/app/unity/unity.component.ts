@@ -3,6 +3,7 @@ import { AppComponent } from '../app.component';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { MsalService } from '@azure/msal-angular';
 
 @Component({
   selector: 'unity',
@@ -10,6 +11,9 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./unity.component.css']
 })
 export class UnityComponent implements OnInit {
+
+  name: string;
+  username: string;
 
   gameInstance: any;
   progress = 0;
@@ -88,9 +92,14 @@ export class UnityComponent implements OnInit {
     }
   }
 
-  constructor(private afStorage: AngularFireStorage, private modalService: NgbModal) { }
+  constructor(private afStorage: AngularFireStorage, private modalService: NgbModal,
+    private msalService: MsalService) { }
 
   ngOnInit(): void {
+    const account = this.msalService.instance.getActiveAccount();
+    this.name = account.name;
+    this.username = account.username;
+
     const loader = (window as any).UnityLoader;
 
     this.gameInstance = loader.instantiate(
