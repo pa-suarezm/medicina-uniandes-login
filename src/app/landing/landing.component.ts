@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
 import { AccountInfo, AuthenticationResult } from '@azure/msal-common';
@@ -9,7 +10,7 @@ import { AccountInfo, AuthenticationResult } from '@azure/msal-common';
 })
 export class LandingComponent implements OnInit {
 
-  constructor(private msalService: MsalService) { }
+  constructor(private msalService: MsalService, private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.msalService.instance.handleRedirectPromise().then(
@@ -20,6 +21,8 @@ export class LandingComponent implements OnInit {
       }
     );    
   }
+
+  apiResponse: string;
 
   isLoggedIn(): boolean {
     return this.msalService.instance.getActiveAccount() != null;
@@ -38,6 +41,12 @@ export class LandingComponent implements OnInit {
 
   logout() {
     this.msalService.logout();
+  }
+
+  callProfile() {
+    this.httpClient.get("https://graph.microsoft.com/v1.0/me").subscribe( resp => {
+      this.apiResponse = JSON.stringify(resp);
+    });
   }
 
 }
