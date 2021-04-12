@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
 import { AccountInfo, AuthenticationResult } from '@azure/msal-common';
 
@@ -10,13 +11,15 @@ import { AccountInfo, AuthenticationResult } from '@azure/msal-common';
 })
 export class LandingComponent implements OnInit {
 
-  constructor(private msalService: MsalService, private httpClient: HttpClient) { }
+  constructor(private msalService: MsalService, private httpClient: HttpClient,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.msalService.instance.handleRedirectPromise().then(
       res => {
         if (res != null && res.account != null) {
           this.msalService.instance.setActiveAccount(res.account);
+          this.router.navigate(["/simulador"]);
         }
       }
     );
