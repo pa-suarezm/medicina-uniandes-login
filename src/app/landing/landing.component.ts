@@ -19,7 +19,7 @@ export class LandingComponent implements OnInit {
           this.msalService.instance.setActiveAccount(res.account);
         }
       }
-    );    
+    );
   }
 
   apiResponse: string;
