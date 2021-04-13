@@ -11,6 +11,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LandingComponent } from './landing/landing.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+//MSAL
 import {
   MsalModule,
   MsalService,
@@ -25,6 +27,10 @@ import {
 } from "@azure/msal-angular";
 import { IPublicClientApplication, PublicClientApplication, InteractionType, BrowserCacheLocation } from "@azure/msal-browser";
 import { LoginFailedComponent } from './login-failed/login-failed.component';
+
+//OAUTH2
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
@@ -75,7 +81,9 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     NgbModule,
     AppRoutingModule,
     HttpClientModule,
-    MsalModule
+    MsalModule,
+    OAuthModule.forRoot(),
+    JwksValidationHandler
   ],
   providers: [
     {
