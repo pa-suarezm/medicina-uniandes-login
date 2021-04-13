@@ -82,8 +82,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     AppRoutingModule,
     HttpClientModule,
     MsalModule,
-    OAuthModule.forRoot(),
-    JwksValidationHandler
+    OAuthModule.forRoot()
   ],
   providers: [
     {
