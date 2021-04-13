@@ -28,11 +28,13 @@ export class LandingComponent implements OnInit {
     this.oauthService.loginUrl = "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/oauth2/v2.0/authorize";
     this.oauthService.tokenEndpoint = "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/oauth2/v2.0/token";
     this.oauthService.responseType = "code";
+    this.oauthService.redirectUri = "https://medicina-uniandes-dev.vercel.app/";
     this.oauthService.userinfoEndpoint = "https://graph.microsoft.com/oidc/userinfo";
     this.oauthService.issuer = "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/v2.0";
     this.oauthService.clientId = "9718a786-ef92-46b9-9987-49ed9cf15fca";
     this.oauthService.jwks = json_jwks;
     this.oauthService.scope = 'openid profile email offline_access';
+    this.oauthService.showDebugInformation = true;
 
     this.oauthService.tokenValidationHandler = new JwksValidationHandler;
     this.oauthService.tryLogin();
