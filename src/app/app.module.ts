@@ -3,13 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { UnityComponent } from './unity/unity.component';
+import { LoginFailedComponent } from './login-failed/login-failed.component';
+import { LandingComponent } from './landing/landing.component';
 
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing/app-routing.module';
-import { LandingComponent } from './landing/landing.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //MSAL
@@ -23,15 +24,20 @@ import {
   MSAL_INSTANCE,
   MSAL_GUARD_CONFIG,
   MSAL_INTERCEPTOR_CONFIG,
-  MsalBroadcastService
+  MsalBroadcastService,
 } from "@azure/msal-angular";
-import { IPublicClientApplication, PublicClientApplication, InteractionType, BrowserCacheLocation } from "@azure/msal-browser";
-import { LoginFailedComponent } from './login-failed/login-failed.component';
+import { 
+  IPublicClientApplication,
+  PublicClientApplication,
+  InteractionType,
+  BrowserCacheLocation,
+} from "@azure/msal-browser";
 
 //OAUTH2
 import { OAuthModule } from 'angular-oauth2-oidc';
 
 export function MSALInstanceFactory(): IPublicClientApplication {
+
   return new PublicClientApplication({
     auth: {
       clientId: "9718a786-ef92-46b9-9987-49ed9cf15fca",

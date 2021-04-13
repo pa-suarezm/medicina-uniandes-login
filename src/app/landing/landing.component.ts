@@ -73,7 +73,23 @@ export class LandingComponent implements OnInit {
       this.msalService.instance.setActiveAccount(response.account);
     });
     */
-    //Redirect
+    //Redirect    
+    this.msalService.instance.handleRedirectPromise().then(
+      res => {
+        console.log("handleRedirectPromise() res start");
+        if (res != null && res.account != null) {
+          this.msalService.instance.setActiveAccount(res.account);
+          this.router.navigate(["/simulador"]);
+        }
+        console.log("handleRedirectPromise() res end");
+      }
+    ).catch(
+      error => {
+        console.log("handleRedirectPromise() error start");
+        console.log("handleRedirectPromise() error: " + error);
+        console.log("handleRedirectPromise() error end");
+      }
+    );
     
     this.msalService.loginRedirect();
 
