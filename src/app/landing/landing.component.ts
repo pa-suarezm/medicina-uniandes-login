@@ -27,8 +27,7 @@ export class LandingComponent implements OnInit {
     this.oauthService.issuer = "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/v2.0";
     this.oauthService.clientId = "9718a786-ef92-46b9-9987-49ed9cf15fca";
     this.oauthService.jwks = json_jwks;
-
-    this.oauthService.configure(authCodeFlowConfig);
+    
     this.oauthService.tokenValidationHandler = new JwksValidationHandler;
     this.oauthService.loadDiscoveryDocumentAndTryLogin();
   }
