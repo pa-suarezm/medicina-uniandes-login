@@ -66,18 +66,18 @@ export class LandingComponent implements OnInit {
     });
     */
     //Redirect
-    //this.msalService.loginRedirect();
+    this.msalService.loginRedirect();
 
     //OAuth
-    this.oauthService.initImplicitFlow();
+    //this.oauthService.initImplicitFlow();
   }
 
   logout() {
     //MSAL
-    //this.msalService.logout();
+    this.msalService.logout();
     
     //OAuth
-    this.oauthService.logOut();
+    //this.oauthService.logOut();
   }
 
   get token() {
