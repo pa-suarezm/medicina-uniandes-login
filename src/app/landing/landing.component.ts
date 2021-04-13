@@ -66,6 +66,7 @@ export class LandingComponent implements OnInit {
     });
     */
     //Redirect
+    
     this.msalService.loginRedirect();
 
     //OAuth

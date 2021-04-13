@@ -30,21 +30,20 @@ import { LoginFailedComponent } from './login-failed/login-failed.component';
 
 //OAUTH2
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     auth: {
       clientId: "9718a786-ef92-46b9-9987-49ed9cf15fca",
-      authority: "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/",
+      authority: "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/v2.0",
       //Debe ser el root porque así fue configurado el redirectUri en Azure por la DSIT
       redirectUri: "https://medicina-uniandes-dev.vercel.app/",
-      postLogoutRedirectUri: "https://medicina-uniandes-dev.vercel.app/"      
-    }/*,
+      postLogoutRedirectUri: "https://medicina-uniandes-dev.vercel.app/",
+    },
     cache: {
       cacheLocation: BrowserCacheLocation.LocalStorage,
       storeAuthStateInCookie: false, // set to true for IE 11
-    },*/
+    },    
   });
 }
 
