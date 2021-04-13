@@ -33,7 +33,6 @@ export class LandingComponent implements OnInit {
     this.oauthService.clientId = "9718a786-ef92-46b9-9987-49ed9cf15fca";
     this.oauthService.jwks = json_jwks;
     this.oauthService.scope = 'openid profile email offline_access';
-    this.oauthService.showDebugInformation = true;
 
     this.oauthService.tokenValidationHandler = new JwksValidationHandler;
     this.oauthService.tryLogin();
