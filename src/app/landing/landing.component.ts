@@ -48,6 +48,10 @@ export class LandingComponent implements OnInit {
           this.router.navigate(["/simulador"]);
         }
       }
+    ).catch(
+      error => {
+        console.log("handleRedirectPromise() error: " + error);
+      }
     );
   }
 
