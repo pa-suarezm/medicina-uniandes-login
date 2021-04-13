@@ -5,7 +5,7 @@ export const authCodeFlowConfig: AuthConfig = {
   issuer: 'https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/',
 
   // URL of the SPA to redirect the user to after login
-  redirectUri: window.location.origin,
+  redirectUri: "https://medicina-uniandes-dev.vercel.app/",
 
   // The SPA's id. The SPA is registerd with this id at the auth-server
   // clientId: 'server.code',
