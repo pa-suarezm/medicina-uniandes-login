@@ -26,7 +26,7 @@ export class LandingComponent implements OnInit {
 
     this.oauthService.loginUrl = "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/oauth2/v2.0/authorize";
     this.oauthService.tokenEndpoint = "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/oauth2/v2.0/token";
-    this.oauthService.responseType = "token";
+    this.oauthService.responseType = "id_token";
     this.oauthService.redirectUri = "https://medicina-uniandes-dev.vercel.app/";
     this.oauthService.userinfoEndpoint = "https://graph.microsoft.com/oidc/userinfo";
     this.oauthService.issuer = "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/v2.0";
@@ -35,7 +35,9 @@ export class LandingComponent implements OnInit {
     this.oauthService.scope = 'openid profile email offline_access';
 
     this.oauthService.tokenValidationHandler = new JwksValidationHandler;
-    this.oauthService.tryLogin();
+    this.oauthService.tryLogin().then( resp => {
+      console.log("tryLogin(): " + resp);
+    });
   }
 
   ngOnInit(): void {
