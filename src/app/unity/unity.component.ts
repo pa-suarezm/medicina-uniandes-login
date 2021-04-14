@@ -94,6 +94,10 @@ export class UnityComponent implements OnInit {
   constructor(private afStorage: AngularFireStorage, private modalService: NgbModal,
     private msalService: MsalService) { }
 
+  logout() {
+    this.msalService.logout();
+  }
+
   ngOnInit(): void {
     const account = this.msalService.instance.getActiveAccount();
     this.name = account.name;
