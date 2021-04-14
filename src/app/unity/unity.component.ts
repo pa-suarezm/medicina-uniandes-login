@@ -117,7 +117,7 @@ export class UnityComponent implements OnInit {
     //Se exponen estas funciones a Unity
     (window as any).getUsername = () => {
       //Se llama la función setUser del objeto GameStateManager con el valor del usuario
-      this.gameInstance.SendMessage('GameStateManager', 'setUser', this.username);
+      this.gameInstance.SendMessage('GameStateManager', 'setUserAngular', this.username);
     }
 
     (window as any).lanzarModalConImg = (imgUrl: string, title: string) => {
