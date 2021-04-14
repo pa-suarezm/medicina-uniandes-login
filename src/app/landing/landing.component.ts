@@ -39,8 +39,8 @@ export class LandingComponent implements OnInit {
   }
 
   logout() {
-    this.username = "";
     this.msalService.logout();
+    this.msalService.instance.setActiveAccount(null);
   }
 
   //Recupera la información del perfil desde la API de Microsoft

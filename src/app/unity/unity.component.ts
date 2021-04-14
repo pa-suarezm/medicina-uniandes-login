@@ -96,6 +96,7 @@ export class UnityComponent implements OnInit {
 
   logout() {
     this.msalService.logout();
+    this.msalService.instance.setActiveAccount(null);
   }
 
   ngOnInit(): void {

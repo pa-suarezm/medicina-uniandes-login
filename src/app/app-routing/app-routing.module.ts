@@ -6,7 +6,7 @@ import { MsalGuard } from '../msal.guard';
 import { UnityComponent } from '../unity/unity.component';
 
 const routes: Routes = [
-    { path: 'simulador', component: UnityComponent, canLoad: [MsalGuard]},
+    { path: 'simulador', component: UnityComponent, canActivate: [MsalGuard]},
     { path: 'login-failed', component: LoginFailedComponent},
     { path: '', component: LandingComponent}
 ];
