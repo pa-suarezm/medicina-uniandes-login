@@ -20,6 +20,7 @@ export class MsalGuard implements CanActivate, CanLoad {
     
     return true;
   }
+  
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {

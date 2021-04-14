@@ -34,7 +34,7 @@ import {
 } from "@azure/msal-browser";
 
 //OAUTH2
-import { OAuthModule } from 'angular-oauth2-oidc';
+//import { OAuthModule } from 'angular-oauth2-oidc';
 
 export function MSALInstanceFactory(): IPublicClientApplication {
 
@@ -87,7 +87,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     AppRoutingModule,
     HttpClientModule,
     MsalModule,
-    OAuthModule.forRoot()
+    //OAuthModule.forRoot()
   ],
   providers: [
     {
