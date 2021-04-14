@@ -18,6 +18,7 @@ export class LandingComponent implements OnInit {
       res => {
         if (res != null && res.account != null) {
           this.msalService.instance.setActiveAccount(res.account);
+          this.username = this.msalService.instance.getActiveAccount().username;
         }
       }
     ).catch(
@@ -27,7 +28,8 @@ export class LandingComponent implements OnInit {
     );
   }
 
-  apiResponse: string;
+  username: string = "";
+  apiResponse: string = "";
 
   isLoggedIn(): boolean {
     return this.msalService.instance.getActiveAccount() != null;
@@ -38,6 +40,8 @@ export class LandingComponent implements OnInit {
   }
 
   logout() {
+    this.username = "";
+    this.apiResponse = "";
     this.msalService.logout();
   }
 

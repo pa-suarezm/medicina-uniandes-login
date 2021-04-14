@@ -16,10 +16,12 @@
     </div>
     <div *ngIf="isLoggedIn()" class="row">
         <div class="col-md-12 text-center">
-            <h4><strong>Usuario:</strong> {{account.username}}</h4>
+            <h4><strong>Usuario:</strong> {{username}}</h4>
             <button routerLink="/simulador" class="btn btn-login">
                 Simulador
             </button>
+            <br />
+            <br />
             <p><strong>Atención:</strong> si el usuario que se muestra no coincide con tu usuario, por favor cierra sesión con el botón de abajo e intenta de nuevo.</p>
             <button class="btn btn-logout" (click)="logout()">
                 Sign out
