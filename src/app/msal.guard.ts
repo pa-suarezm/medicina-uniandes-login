@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
 import { Observable } from 'rxjs';
 
@@ -8,13 +8,15 @@ import { Observable } from 'rxjs';
 })
 export class MsalGuard implements CanActivate, CanLoad {
 
-  constructor(private msalService: MsalService) {}
+  constructor(private msalService: MsalService, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
     if (this.msalService.instance.getActiveAccount() == null) {
+      //Regrese a home
+      this.router.navigate(["/"]);
       return false;
     }
     
@@ -26,6 +28,8 @@ export class MsalGuard implements CanActivate, CanLoad {
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
     if (this.msalService.instance.getActiveAccount() == null) {
+      //Regrese a home
+      this.router.navigate(["/"]);
       return false;
     }
     

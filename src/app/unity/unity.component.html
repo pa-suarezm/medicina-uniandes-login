@@ -10,6 +10,11 @@
 <p>{{name}} - {{username}}</p>
 <p>v0.7.0</p>
 
+
+<button class="btn btn-logout" (click)="logout()">
+  Sign out
+</button>
+
 <ng-template #contentImg let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Examen físico: {{ examenFisico }}</h4>
