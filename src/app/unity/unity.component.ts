@@ -68,8 +68,7 @@ export class UnityComponent implements OnInit {
     this.mostrarLab(this.labActual);
   }
 
-  mostrarLab(index: number)
-  {
+  mostrarLab(index: number) {
     this.labActual = index;
 
     this.labText = false;
@@ -112,7 +111,11 @@ export class UnityComponent implements OnInit {
             this.isReady = true;
           }
         }
-      });
+      }
+    );
+
+    //Se envían estos valores a Unity
+    this.gameInstance.SendMessage('GameStateManager', 'setUser', this.username);
 
     //Se exponen estas funciones a Unity
     (window as any).lanzarModalConImg = (imgUrl: string, title: string) => {
