@@ -19,12 +19,9 @@ import {
   MsalService,
   MsalInterceptor,
   MsalInterceptorConfiguration,
-  MsalGuard,
   MsalGuardConfiguration,
   MSAL_INSTANCE,
-  MSAL_GUARD_CONFIG,
   MSAL_INTERCEPTOR_CONFIG,
-  MsalBroadcastService,
 } from "@azure/msal-angular";
 import { 
   IPublicClientApplication,
@@ -32,9 +29,6 @@ import {
   InteractionType,
   BrowserCacheLocation,
 } from "@azure/msal-browser";
-
-//OAUTH2
-//import { OAuthModule } from 'angular-oauth2-oidc';
 
 export function MSALInstanceFactory(): IPublicClientApplication {
 
@@ -87,19 +81,12 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     AppRoutingModule,
     HttpClientModule,
     MsalModule,
-    //OAuthModule.forRoot()
   ],
   providers: [
     {
       provide: MSAL_INSTANCE,
       useFactory: MSALInstanceFactory
-    },/*
-    {
-      provide: MSAL_GUARD_CONFIG,
-      useFactory: MSALGuardConfigFactory
     },
-    MsalGuard,
-    MsalBroadcastService,*/
     MsalService,
     {
       provide: HTTP_INTERCEPTORS,

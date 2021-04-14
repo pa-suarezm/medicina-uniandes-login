@@ -16,23 +16,18 @@
     </div>
     <div *ngIf="isLoggedIn()" class="row">
         <div class="col-md-12 text-center">
-            <h4><strong>Usuario:</strong> {{username}}</h4>
+            <h5><strong>Usuario:</strong> {{username}}</h5>
             <button routerLink="/simulador" class="btn btn-login">
                 Simulador
             </button>
             <br />
             <br />
+            <hr />
             <p><strong>Atención:</strong> si el usuario que se muestra no coincide con tu usuario, por favor cierra sesión con el botón de abajo e intenta de nuevo.</p>
+            <br />
             <button class="btn btn-logout" (click)="logout()">
                 Sign out
             </button>
         </div>
-    </div>
-    <div *ngIf="isLoggedIn()">
-        <button (click)="callProfile()">
-            Get Profile
-        </button>
-        <p>Api response is: </p>
-        <p>{{apiResponse}}</p>
     </div>
 </div>

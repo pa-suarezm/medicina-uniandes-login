@@ -29,7 +29,6 @@ export class LandingComponent implements OnInit {
   }
 
   username: string = "";
-  apiResponse: string = "";
 
   isLoggedIn(): boolean {
     return this.msalService.instance.getActiveAccount() != null;
@@ -41,14 +40,13 @@ export class LandingComponent implements OnInit {
 
   logout() {
     this.username = "";
-    this.apiResponse = "";
     this.msalService.logout();
   }
 
   //Recupera la información del perfil desde la API de Microsoft
   callProfile() {
     this.httpClient.get("https://graph.microsoft.com/v1.0/me").subscribe( resp => {
-      this.apiResponse = JSON.stringify(resp);
+      console.log(resp);
     });
   }
 
