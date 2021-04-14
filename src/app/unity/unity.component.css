@@ -16,8 +16,9 @@
 .btn-logout {
     background-color: rgb(0, 191, 185);
     color: white;
-    max-width: 20%;
-    min-width: 20%;
+    max-width: 10%;
+    min-width: 10%;
+    max-height: 2.5em;
     transition: 0.3s;
 }
 

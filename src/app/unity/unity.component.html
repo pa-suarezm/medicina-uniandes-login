@@ -7,13 +7,21 @@
       style="display: block; max-width: 75%; max-height: 75%; margin: auto;">
 </div>
 
-<p>{{name}} - {{username}}</p>
-<p>v0.7.0</p>
-
-
-<button class="btn btn-logout" (click)="logout()">
-  Sign out
-</button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <p>{{name}} - {{username}}</p>
+      <p>v0.7.0</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-logout" (click)="logout()">
+        Sign out
+      </button>
+    </div>
+  </div>
+</div>
 
 <ng-template #contentImg let-modal>
     <div class="modal-header">
