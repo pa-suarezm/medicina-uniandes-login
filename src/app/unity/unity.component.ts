@@ -125,6 +125,11 @@ export class UnityComponent implements OnInit {
       this.gameInstance.SendMessage('GameStateManager', 'setUserAngular', this.username);
     }
 
+    (window as any).getName = () => {
+      //Se llama la función setName del objeto GameStateManager con el valor del nombre
+      this.gameInstance.SendMessage('GameStateManager', 'setNameAngular', this.name);
+    }
+
     (window as any).lanzarModalConImg = (imgUrl: string, title: string) => {
 
       this.afStorage.ref(imgUrl).getDownloadURL()
