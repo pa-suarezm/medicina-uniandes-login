@@ -128,7 +128,6 @@ export class UnityComponent implements OnInit {
     (window as any).getName = () => {
       //Se llama la función setName del objeto GameStateManager con el valor del nombre
       this.gameInstance.SendMessage('GameStateManager', 'setNameAngular', this.name);
-      console.log("Sent message to GameStateManager.setNameAngular with param \"" + this.name + "\"");
     }
 
     (window as any).lanzarModalConImg = (imgUrl: string, title: string) => {
