@@ -38,9 +38,6 @@ export class UnityComponent implements OnInit {
   valoresLab = [];
   pathsLab = [];
 
-  labText = false;
-  labImg = false;
-
   @ViewChild('contentImg')
   private contentImg: TemplateRef<any>;
 
@@ -71,22 +68,16 @@ export class UnityComponent implements OnInit {
   mostrarLab(index: number) {
     this.labActual = index;
 
-    this.labText = false;
-    this.labImg = false;
-
     this.titleLab = this.titlesLab[this.labActual];
     this.valorLab = this.valoresLab[this.labActual];
     this.pathLab = this.pathsLab[this.labActual];
 
-    this.labImg = (this.pathLab != "N/A");
-    this.labText = !this.labImg;
-
-    if (this.labImg) {
+    if (this.pathLab != null) {
       this.afStorage.ref(this.pathLab).getDownloadURL()
       .subscribe(
         downloadUrl => this.urlImgLab = downloadUrl,
         err => console.log('Observer got an error: ' + err),
-        () => console.log('Obersever got a completion notification')
+        () => {}
       );
     }
   }
@@ -111,7 +102,7 @@ export class UnityComponent implements OnInit {
       '/assets/Build/Builds.json', {
       onProgress: (gameInstance: any, progress: number) => {
           this.progress = Math.round(progress);
-          this.percentage = Math.round(progress*100)
+          this.percentage = Math.round(progress*100);
           if (progress === 1) {
             this.isReady = true;
           }

@@ -59,13 +59,13 @@
     <div class="modal-body">
         <h5>{{ titleLab }}</h5>
 
-        <ng-container *ngIf="labText">
-            <p>Resultado:</p>
-            <pre>{{ valorLab }}</pre>
+        <ng-container *ngIf="urlImgLab != null">
+            <img [src]="urlImgLab" style="display: block; max-width: 75%; max-height: 75%; margin: auto">
         </ng-container>
 
-        <ng-container *ngIf="labImg">
-            <img [src]="urlImgLab" style="display: block; max-width: 75%; max-height: 75%; margin: auto">
+        <ng-container *ngIf="valorLab != null">
+            <p>Resultado:</p>
+            <pre>{{ valorLab }}</pre>
         </ng-container>
     </div>
     <div class="modal-footer">
