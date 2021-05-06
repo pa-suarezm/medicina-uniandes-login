@@ -72,7 +72,9 @@ export class UnityComponent implements OnInit {
     this.valorLab = this.valoresLab[this.labActual];
     this.pathLab = this.pathsLab[this.labActual];
 
-    if (this.pathLab != null) {
+    this.urlImgLab = null;
+
+    if (this.pathLab != null && this.pathLab != "N/A") {
       this.afStorage.ref(this.pathLab).getDownloadURL()
       .subscribe(
         downloadUrl => this.urlImgLab = downloadUrl,
