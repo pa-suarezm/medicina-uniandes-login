@@ -1,6 +1,6 @@
 <ng-container *ngIf="!isReady">
     <p>Cargando... {{ percentage }}%</p>
-    <p>Actualizado 05-mayo-2021 10:10pm</p>
+    <p>Actualizado 05-mayo-2021 10:25pm</p>
 </ng-container>
 
 <div #unityEl id="gameContainer" 
@@ -59,11 +59,11 @@
     <div class="modal-body">
         <h5>{{ titleLab }}</h5>
 
-        <ng-container *ngIf="urlImgLab != null">
+        <ng-container *ngIf="urlImgLab != null && urlImgLab != 'N/A'">
             <img [src]="urlImgLab" style="display: block; max-width: 75%; max-height: 75%; margin: auto">
         </ng-container>
 
-        <ng-container *ngIf="valorLab != null">
+        <ng-container *ngIf="valorLab != null && valorLab.trim() != ''">
             <p>Resultado:</p>
             <pre>{{ valorLab }}</pre>
         </ng-container>
