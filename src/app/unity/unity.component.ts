@@ -4,6 +4,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MsalService } from '@azure/msal-angular';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'unity',
@@ -85,7 +86,7 @@ export class UnityComponent implements OnInit {
   }
 
   constructor(private afStorage: AngularFireStorage, private modalService: NgbModal,
-    private msalService: MsalService) { }
+    private msalService: MsalService, private http: HttpClient) { }
 
   logout() {
     this.msalService.logout();
@@ -121,6 +122,25 @@ export class UnityComponent implements OnInit {
     (window as any).getName = () => {
       //Se llama la función setName del objeto GameStateManager con el valor del nombre
       this.gameInstance.SendMessage('GameStateManager', 'setNameAngular', this.name);
+    }
+
+    (window as any).registerUsername = () => {
+      var str_json: string = "{\"nombre\": \"" + this.name + "\"";
+      //TODO: Registrar más información del usuario
+      str_json += "}"
+
+      var json_user = JSON.parse(str_json);
+      var urlPutUser = "https://medicina-uniandes-default-rtdb.firebaseio.com/usuarios/estudiantes/" + this.username.split(".").join(",") + "/.json";
+      
+      this.http.put(urlPutUser, json_user).toPromise().then(
+        resp => {
+          console.log("Success registering " + this.username);
+        }
+      ).catch(
+        error => {
+          console.log("Error registering " + this.username + ": " + error);
+        }
+      );
     }
 
     (window as any).lanzarModalConImg = (imgUrl: string, title: string) => {
