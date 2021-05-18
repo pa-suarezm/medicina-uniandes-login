@@ -166,12 +166,17 @@ export class UnityComponent implements OnInit {
         data => {
           var key_aux: string;
           var cnt: number = 0;
-          while(true) {
-            key_aux = "c_" + cnt;
-            if (data[key_aux] == null) {
-              break; //Se busca cuál es la siguiente posición vacía en la que se puede insertar el nuevo caso
+          if (data != null) {
+            while(true) {
+              key_aux = "c_" + cnt;
+              if (data[key_aux] == null) {
+                break; //Se busca cuál es la siguiente posición vacía en la que se puede insertar el nuevo caso
+              }
+              cnt++;
             }
-            cnt++;
+          }
+          else {
+            key_aux = "c_0";
           }
 
           urlPutCaso += key_aux + "/.json";
