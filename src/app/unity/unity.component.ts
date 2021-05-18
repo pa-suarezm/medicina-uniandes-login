@@ -143,6 +143,56 @@ export class UnityComponent implements OnInit {
       );
     }
 
+    (window as any).registrarCasoCompletado = (especialidad: string, puntaje: string, tiempo: string, titulo: string) => {
+      var urlGetCasos: string = "https://medicina-uniandes-default-rtdb.firebaseio.com/usuarios/estudiantes/" + this.username.split(".").join(",")
+        + "/casos/.json";
+      
+      var urlPutCaso: string = "https://medicina-uniandes-default-rtdb.firebaseio.com/usuarios/estudiantes/" + this.username.split(".").join(",")
+      + "/casos/"; //Hay que agregar el identificador. Para saber el siguiente identificador, hay que primero recorrer todos los casos
+                  //que han sido registrados para este usuario
+
+      var fecha: string = new Date().toISOString();
+      
+
+      var json_caso = {
+        "especialidad": especialidad,
+        "fecha": fecha,
+        "puntaje": puntaje,
+        "tiempo": tiempo,
+        "título": titulo       
+      };
+
+      this.http.get(urlGetCasos).toPromise().then(
+        data => {
+          var key_aux: string;
+          var cnt: number = 0;
+          while(true) {
+            key_aux = "c_" + cnt;
+            if (data[key_aux] == null) {
+              break; //Se busca cuál es la siguiente posición vacía en la que se puede insertar el nuevo caso
+            }
+            cnt++;
+          }
+
+          urlPutCaso += key_aux + "/.json";
+
+          this.http.put(urlPutCaso, json_caso).toPromise().then(
+            resp => {
+              console.log("Finalizó la carga de " + key_aux + " para " + this.username);
+            }
+          ).catch(
+            error => {
+              console.log("Error subiendo el caso " + key_aux + " a " + urlPutCaso + ": " + error);
+            }
+          );
+        }
+      ).catch(
+        error => {
+          console.log("Error recuperando casos de " + this.username + ": " + error);
+        }
+      );
+    }
+
     (window as any).lanzarModalConImg = (imgUrl: string, title: string) => {
 
       this.afStorage.ref(imgUrl).getDownloadURL()
