@@ -151,12 +151,13 @@ export class UnityComponent implements OnInit {
       + "/casos/"; //Hay que agregar el identificador. Para saber el siguiente identificador, hay que primero recorrer todos los casos
                   //que han sido registrados para este usuario
 
-      var fecha: string = new Date().toISOString().split("T")[0];
+      var fecha: Date = new Date(Date.now());
+      var fecha_str: string = `${fecha.getFullYear()}-${fecha.getMonth()}-${fecha.getDate()}`
       
 
       var json_caso = {
         "especialidad": especialidad,
-        "fecha": fecha,
+        "fecha": fecha_str,
         "notas": notas,
         "puntaje": puntaje,
         "tiempo": tiempo,
