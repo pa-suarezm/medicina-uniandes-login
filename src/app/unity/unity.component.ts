@@ -143,7 +143,7 @@ export class UnityComponent implements OnInit {
       );
     }
 
-    (window as any).registrarCasoCompletado = (especialidad: string, puntaje: string, tiempo: string, titulo: string) => {
+    (window as any).registrarCasoCompletado = (especialidad: string, puntaje: string, tiempo: string, titulo: string, notas: string) => {
       var urlGetCasos: string = "https://medicina-uniandes-default-rtdb.firebaseio.com/usuarios/estudiantes/" + this.username.split(".").join(",")
         + "/casos/.json";
       
@@ -157,9 +157,10 @@ export class UnityComponent implements OnInit {
       var json_caso = {
         "especialidad": especialidad,
         "fecha": fecha,
+        "notas": notas,
         "puntaje": puntaje,
         "tiempo": tiempo,
-        "título": titulo       
+        "título": titulo
       };
 
       this.http.get(urlGetCasos).toPromise().then(
