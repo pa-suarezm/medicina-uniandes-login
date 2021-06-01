@@ -170,7 +170,8 @@ export class UnityComponent implements OnInit {
       this.http.get(urlGetCasos).toPromise().then(
         data => {
           var key_aux: string;
-          var cnt_intentos: number = 1;          var cnt: number = 0;
+          var cnt_intentos: number = 1;          
+          var cnt: number = 0;
           if (data != null) {
             while(true) {
               key_aux = "c_" + cnt;
@@ -189,8 +190,7 @@ export class UnityComponent implements OnInit {
           else {
             key_aux = "c_0";
           }
-          
-          this.resultadosService.id_actual = key_aux;
+
 
           json_caso["intento"] = cnt_intentos;
 
@@ -199,6 +199,9 @@ export class UnityComponent implements OnInit {
           this.http.put(urlPutCaso, json_caso).toPromise().then(
             resp => {
               console.log("Finalizó la carga de " + key_aux + " para " + this.username);
+              
+              this.resultadosService.id_actual = key_aux;
+              (window as any).subirPregsSeleccionadas();
             }
           ).catch(
             error => {
