@@ -99,6 +99,8 @@ export class UnityComponent implements OnInit {
     this.name = account.name;
     this.username = account.username;
 
+    this.resultadosService.correo_actual = this.username.split(".").join(",");
+
     const loader = (window as any).UnityLoader;
 
     this.gameInstance = loader.instantiate(
@@ -156,7 +158,6 @@ export class UnityComponent implements OnInit {
       var fecha: Date = new Date(Date.now());
       var fecha_str: string = `${fecha.getFullYear()}-${meses[fecha.getMonth()]}-${fecha.getDate()}`
       
-
       var json_caso = {
         "especialidad": especialidad,
         "fecha": fecha_str,
@@ -188,6 +189,8 @@ export class UnityComponent implements OnInit {
           else {
             key_aux = "c_0";
           }
+          
+          this.resultadosService.id_actual = key_aux;
 
           json_caso["intento"] = cnt_intentos;
 
@@ -203,8 +206,6 @@ export class UnityComponent implements OnInit {
             }
           );
 
-          this.resultadosService.id_actual = key_aux;
-          this.resultadosService.correo_actual = this.username.split(".").join(",");
         }
       ).catch(
         error => {
@@ -281,7 +282,6 @@ export class UnityComponent implements OnInit {
 
     //Estas funciones muestran los recursos que Unity requiera
     (window as any).lanzarModalConImg = (imgUrl: string, title: string) => {
-
       this.afStorage.ref(imgUrl).getDownloadURL()
       .subscribe(
         downloadUrl => this.imgUrl = downloadUrl,
@@ -300,7 +300,6 @@ export class UnityComponent implements OnInit {
     }
 
     (window as any).lanzarModalConAudio = (audioUrl: string, title: string) => {
-
       this.afStorage.ref(audioUrl).getDownloadURL()
       .subscribe(
         downloadUrl => this.audioUrl = downloadUrl,
@@ -319,7 +318,6 @@ export class UnityComponent implements OnInit {
     }
 
     (window as any).lanzarModalLabs = () => {
-
       this.modalService.open(this.contentLabs, {ariaLabelledBy: 'modal-basic-title'}).result
       .then(
         (result) => {}, 
@@ -330,7 +328,6 @@ export class UnityComponent implements OnInit {
     }
 
     (window as any).agregarLab = (title: string, valor: string, path: string) => {
-
       this.labsTotales++;
 
       this.titlesLab.push(title);
@@ -340,7 +337,6 @@ export class UnityComponent implements OnInit {
     }
 
     (window as any).eliminarLabs = () => {
-
       this.titlesLab = [];
       this.valoresLab = [];
       this.pathsLab = [];
