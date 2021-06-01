@@ -196,10 +196,12 @@ export class ResultadosMngrService {
 
   subirImpresion() {
     var json_impresion = {};
+    var cnt: number;
 
     this.impresion_diagnostica.forEach(
       (e,i) => {
-        json_impresion["r_" + i+1] = e; //Se suma 1 al índice para que cuadre con los diagnósticos guardados del caso
+        cnt = i+1;
+        json_impresion["r_" + cnt] = e; //Se suma 1 al índice para que cuadre con los diagnósticos guardados del caso
       }
     );
 
@@ -273,10 +275,11 @@ export class ResultadosMngrService {
 
   subirDiagnostico() {
     var json_diag = {};
-
+    var cnt: number;
     this.diagnostico_final.forEach(
       (e,i) => {
-        json_diag["r_" + i+1] = e;
+        cnt = i+1;
+        json_diag["r_" + cnt] = e;
       }
     );
 
