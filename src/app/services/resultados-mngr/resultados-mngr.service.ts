@@ -218,7 +218,11 @@ export class ResultadosMngrService {
   }
 
   subirAyudas() {
-    var json_ayudas = {};
+    var json_ayudas = {
+      "laboratorios": {},
+      "imágenes diagnósticas": {},
+      "otras ayudas": {}
+    };
 
     if (this.laboratorios.length != 0) {
       this.laboratorios.forEach(
@@ -226,6 +230,9 @@ export class ResultadosMngrService {
           json_ayudas["laboratorios"]["r_" + i] = e;
         }
       );
+    }
+    else {
+      delete json_ayudas.laboratorios;
     }
     
     if (this.imgs_diagnosticas.length != 0) {
@@ -235,6 +242,9 @@ export class ResultadosMngrService {
         }
       );
     }
+    else {
+      delete json_ayudas['imágenes diagnósticas'];
+    }
 
     if (this.otras_ayudas.length != 0) {
       this.otras_ayudas.forEach(
@@ -242,6 +252,9 @@ export class ResultadosMngrService {
           json_ayudas["otras ayudas"]["r_" + i] = e;
         }
       );
+    }
+    else {
+      delete json_ayudas['otras ayudas'];
     }
 
     if (!this.isEmpty(json_ayudas)) {
