@@ -73,7 +73,7 @@ export class ResultadosMngrService {
     );
 
     if (this.antecedentes.length != 0) {
-      this.subirJSON("", json_antecedentes).toPromise().then(
+      this.subirJSON("antecedentes/.json", json_antecedentes).toPromise().then(
         resp => {
           this.antecedentes = [];
         }
@@ -104,6 +104,9 @@ export class ResultadosMngrService {
         }
       );
     }
+    else {
+      delete json_sistemas.cardiovascular;
+    }
     
     if (this.respiratorio.length != 0) {
       this.respiratorio.forEach(
@@ -111,6 +114,9 @@ export class ResultadosMngrService {
           json_sistemas["respiratorio"]["r_" + i] = e;
         }
       );
+    }
+    else {
+      delete json_sistemas.respiratorio;
     }
     
     if (this.genitourinario.length != 0) {
@@ -120,6 +126,9 @@ export class ResultadosMngrService {
         }
       );
     }
+    else {
+      delete json_sistemas.genitourinario;
+    }
     
     if (this.endocrino.length != 0) {
       this.endocrino.forEach(
@@ -127,6 +136,9 @@ export class ResultadosMngrService {
           json_sistemas["endocrino"]["r_" + i] = e;
         }
       );
+    }
+    else {
+      delete json_sistemas.endocrino;
     }
     
     if (this.gastrointestinal.length != 0) {
@@ -136,6 +148,9 @@ export class ResultadosMngrService {
         }
       );
     }
+    else {
+      delete json_sistemas.gastrointestinal;
+    }
     
     if (this.osteomuscular.length != 0) {
       this.osteomuscular.forEach(
@@ -144,6 +159,9 @@ export class ResultadosMngrService {
         }
       );
     }
+    else {
+      delete json_sistemas.osteomuscular;
+    }
     
     if (this.nervioso.length != 0) {
       this.nervioso.forEach(
@@ -151,6 +169,9 @@ export class ResultadosMngrService {
           json_sistemas["nervioso"]["r_" + i] = e;
         }
       );
+    }
+    else {
+      delete json_sistemas.nervioso;
     }
 
     if (!this.isEmpty(json_sistemas)) {
