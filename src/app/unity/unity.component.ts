@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MsalService } from '@azure/msal-angular';
 import { HttpClient } from '@angular/common/http';
+import { ResultadosMngrService } from '../services/resultados-mngr/resultados-mngr.service';
 
 @Component({
   selector: 'unity',
@@ -86,7 +87,7 @@ export class UnityComponent implements OnInit {
   }
 
   constructor(private afStorage: AngularFireStorage, private modalService: NgbModal,
-    private msalService: MsalService, private http: HttpClient) { }
+    private msalService: MsalService, private http: HttpClient, private resultadosService: ResultadosMngrService) { }
 
   logout() {
     this.msalService.logout();
@@ -126,7 +127,6 @@ export class UnityComponent implements OnInit {
 
     (window as any).registerUsername = () => {
       var str_json: string = "{\"nombre\": \"" + this.name + "\"";
-      //TODO: Registrar más información del usuario
       str_json += "}"
 
       var json_user = JSON.parse(str_json);
@@ -143,6 +143,7 @@ export class UnityComponent implements OnInit {
       );
     }
 
+    //Registra el caso completado en Firebase
     (window as any).registrarCasoCompletado = (especialidad: string, puntaje: string, tiempo: string, titulo: string, notas: string) => {
       var urlGetCasos: string = "https://medicina-uniandes-default-rtdb.firebaseio.com/usuarios/estudiantes/" + this.username.split(".").join(",")
         + "/casos/.json";
@@ -168,12 +169,18 @@ export class UnityComponent implements OnInit {
       this.http.get(urlGetCasos).toPromise().then(
         data => {
           var key_aux: string;
-          var cnt: number = 0;
+          var cnt_intentos: number = 1;          var cnt: number = 0;
           if (data != null) {
             while(true) {
               key_aux = "c_" + cnt;
               if (data[key_aux] == null) {
                 break; //Se busca cuál es la siguiente posición vacía en la que se puede insertar el nuevo caso
+              }
+              else {
+                if (data[key_aux]["especialidad"] == json_caso.especialidad
+                && data[key_aux]["título"] == json_caso.título) {
+                  cnt_intentos++;
+                }
               }
               cnt++;
             }
@@ -181,6 +188,8 @@ export class UnityComponent implements OnInit {
           else {
             key_aux = "c_0";
           }
+
+          json_caso["intento"] = cnt_intentos;
 
           urlPutCaso += key_aux + "/.json";
 
@@ -193,6 +202,9 @@ export class UnityComponent implements OnInit {
               console.log("Error subiendo el caso " + key_aux + " a " + urlPutCaso + ": " + error);
             }
           );
+
+          this.resultadosService.id_actual = key_aux;
+          this.resultadosService.correo_actual = this.username.split(".").join(",");
         }
       ).catch(
         error => {
@@ -201,6 +213,73 @@ export class UnityComponent implements OnInit {
       );
     }
 
+    (window as any).agregarEnfermedadActual = (pPreg: string) => {
+      this.resultadosService.enfermedad_acutal.push(pPreg);
+    }
+
+    (window as any).agregarAntecedente = (pPreg: string) => {
+      this.resultadosService.antecedentes.push(pPreg);
+    }
+
+    (window as any).agregarSistema = (pPreg: string, pSistema: string) => {
+      if (pSistema == "cardiovascular") {
+        this.resultadosService.cardiovascular.push(pPreg);
+      }
+      else if (pSistema == "respiratorio") {
+        this.resultadosService.respiratorio.push(pPreg);
+      }
+      else if (pSistema == "genitourinario") {
+        this.resultadosService.genitourinario.push(pPreg);
+      }
+      else if (pSistema == "endocrino") {
+        this.resultadosService.endocrino.push(pPreg);
+      }
+      else if (pSistema == "gastrointestinal") {
+        this.resultadosService.gastrointestinal.push(pPreg);
+      }
+      else if (pSistema == "osteomuscular") {
+        this.resultadosService.osteomuscular.push(pPreg);
+      }
+      else if (pSistema == "nervioso") {
+        this.resultadosService.nervioso.push(pPreg);
+      }
+    }
+
+    (window as any).agregarImpresion = (pImpr: string) => {
+      this.resultadosService.impresion_diagnostica.push(pImpr);
+    }
+
+    (window as any).agregarAyuda = (pAyuda: string, pTipo: string) => {
+      if (pTipo == "lab") {
+        this.resultadosService.laboratorios.push(pAyuda);
+      }
+      else if (pTipo == "img") {
+        this.resultadosService.imgs_diagnosticas.push(pAyuda);
+      }
+      else if (pTipo == "otras") {
+        this.resultadosService.otras_ayudas.push(pAyuda);
+      }
+    }
+
+    (window as any).agregarDiagnostico = (pDiag: string) => {
+      this.resultadosService.diagnostico_final.push(pDiag);
+    }
+
+    (window as any).agregarTratamiento = (pTrat: string) => {
+      this.resultadosService.tratamiento.push(pTrat);
+    }
+
+    (window as any).subirPregsSeleccionadas = () => {
+      this.resultadosService.subirEnfermedadActual();
+      this.resultadosService.subirAntecedentes();
+      this.resultadosService.subirSistemas();
+      this.resultadosService.subirImpresion();
+      this.resultadosService.subirAyudas();
+      this.resultadosService.subirDiagnostico();
+      this.resultadosService.subirTratamiento();
+    }
+
+    //Estas funciones muestran los recursos que Unity requiera
     (window as any).lanzarModalConImg = (imgUrl: string, title: string) => {
 
       this.afStorage.ref(imgUrl).getDownloadURL()
