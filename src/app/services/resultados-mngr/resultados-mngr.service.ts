@@ -87,7 +87,15 @@ export class ResultadosMngrService {
   }
 
   subirSistemas() {
-    var json_sistemas = {};
+    var json_sistemas = {
+      "cardiovascular": {},
+      "respiratorio": {},
+      "genitourinario": {},
+      "endocrino": {},
+      "gastrointestinal": {},
+      "osteomuscular": {},
+      "nervioso": {}
+    };
 
     if (this.cardiovascular.length != 0) {
       this.cardiovascular.forEach(
