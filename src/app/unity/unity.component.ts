@@ -146,7 +146,7 @@ export class UnityComponent implements OnInit {
     }
 
     //Registra el caso completado en Firebase
-    (window as any).registrarCasoCompletado = (especialidad: string, puntaje: string, tiempo: string, titulo: string, notas: string) => {
+    (window as any).registrarCasoCompletado = (especialidad: string, puntaje: string, tiempo: string, titulo: string, notas: string, modo: string) => {
       var urlGetCasos: string = "https://medicina-uniandes-default-rtdb.firebaseio.com/usuarios/estudiantes/" + this.username.split(".").join(",")
         + "/casos/.json";
       
@@ -164,7 +164,8 @@ export class UnityComponent implements OnInit {
         "notas": notas,
         "puntaje": puntaje,
         "tiempo": tiempo,
-        "título": titulo
+        "título": titulo,
+        "modo": modo
       };
 
       this.http.get(urlGetCasos).toPromise().then(
