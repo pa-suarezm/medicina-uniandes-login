@@ -40,6 +40,30 @@ export class ResultadosMngrService {
 
   constructor(private http: HttpClient) { }
 
+  reiniciarRestulados() {
+    this.enfermedad_acutal = [];
+
+    this.antecedentes = [];
+
+    this.cardiovascular = [];
+    this.respiratorio = [];
+    this.genitourinario = [];
+    this.endocrino = [];
+    this.gastrointestinal = [];
+    this.osteomuscular = [];
+    this.nervioso = [];
+
+    this.impresion_diagnostica = [];
+
+    this.laboratorios = [];
+    this.imgs_diagnosticas = [];
+    this.otras_ayudas = [];
+
+    this.diagnostico_final = [];
+
+    this.tratamiento = [];
+  }
+
   subirEnfermedadActual() {
     var json_enfermedad_actual = {};
 
@@ -343,5 +367,5 @@ export class ResultadosMngrService {
             return false;
     }
     return true;
-}
+  }
 }

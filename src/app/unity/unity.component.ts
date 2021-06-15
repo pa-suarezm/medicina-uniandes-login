@@ -398,6 +398,8 @@ export class UnityComponent implements OnInit {
       this.valorLab = "";
       this.pathLab = "";
       this.urlImgLab = "";
+
+      this.resultadosService.reiniciarRestulados();
     }
   }
 
