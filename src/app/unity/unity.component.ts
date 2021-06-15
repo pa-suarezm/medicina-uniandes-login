@@ -245,7 +245,7 @@ export class UnityComponent implements OnInit {
             casos: casos
           }
 
-          this.http.post(urlCasosPorDía, casos_por_dia_json).toPromise().then(
+          this.http.put(urlCasosPorDía, casos_por_dia_json).toPromise().then(
             resp => {
               //No se hace nada
             }
