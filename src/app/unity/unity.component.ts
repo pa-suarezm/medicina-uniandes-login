@@ -328,6 +328,8 @@ export class UnityComponent implements OnInit {
       this.resultadosService.subirAyudas();
       this.resultadosService.subirDiagnostico();
       this.resultadosService.subirTratamiento();
+
+      (window as any).eliminarLabs();
     }
 
     //Estas funciones muestran los recursos que Unity requiera
