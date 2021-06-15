@@ -206,14 +206,60 @@ export class UnityComponent implements OnInit {
             }
           ).catch(
             error => {
-              console.log("Error subiendo el caso " + key_aux + " a " + urlPutCaso + ": " + error);
+              console.log("Error subiendo el caso " + key_aux + " a " + urlPutCaso);
+              console.log(error);
             }
           );
 
         }
       ).catch(
         error => {
-          console.log("Error recuperando casos de " + this.username + ": " + error);
+          console.log("Error recuperando casos de " + this.username);
+          console.log(error);
+        }
+      );
+
+      //Estadísticas de uso
+      var urlEstadisticas: string = "https://medicina-uniandes-default-rtdb.firebaseio.com/estadísticas/";
+      //Subir el contador de casos resueltos para este día
+      var urlCasosPorDía: string = urlEstadisticas + "Casos%20realizados%20por%20día/.json";
+      var fechas_str: string[] = [];
+      var casos: number[] = [];
+
+      this.http.get(urlCasosPorDía).toPromise().then(
+        data => {
+          fechas_str = data["fechas"];
+          casos = data["casos"];
+
+          if (fechas_str.includes(json_caso.fecha)) {
+            var index_aux = fechas_str.indexOf(json_caso.fecha);
+            casos[index_aux] = casos[index_aux] + 1;
+          }
+          else {
+            fechas_str.push(json_caso.fecha);
+            casos.push(1);
+          }
+
+          var casos_por_dia_json = {
+            fechas: fechas_str,
+            casos: casos
+          }
+
+          this.http.post(urlCasosPorDía, casos_por_dia_json).toPromise().then(
+            resp => {
+              //No se hace nada
+            }
+          ).catch(
+            error_2 => {
+              console.log("Error subiendo estadísticas de casos por resueltos por día");
+              console.log(error_2);
+            }
+          );
+        }
+      ).catch(
+        error => {
+          console.log("Error recuperando estadísticas de casos por día");
+          console.log(error);
         }
       );
     }
