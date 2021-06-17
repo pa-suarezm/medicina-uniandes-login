@@ -34,8 +34,8 @@ export function MSALInstanceFactory(): IPublicClientApplication {
 
   return new PublicClientApplication({
     auth: {
-      clientId: "9718a786-ef92-46b9-9987-49ed9cf15fca",
-      authority: "https://login.microsoftonline.com/77c59514-17af-4ce4-9592-08f2aa4c457c/",
+      clientId: "e6428a2a-0043-4289-8679-74ea177249a0",
+      authority: "https://login.microsoftonline.com/fabd047c-ff48-492a-8bbb-8f98b9fb9cca/",
       //Debe ser el root porque así fue configurado el redirectUri en Azure por la DSIT
       redirectUri: "https://medicina-uniandes-dev.vercel.app/",
       postLogoutRedirectUri: "https://medicina-uniandes-dev.vercel.app/",
