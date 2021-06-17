@@ -116,14 +116,14 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn-collapse" data-toggle="collapse" data-target="#sistemas">
+            <button class="btn-collapse" (click)="collapseSistemas.toggle()" [attr.aria-expanded]="!sistemasIsCollapsed">
               <p>
                 <strong>
                   Revisión por sistemas
                 </strong>
               </p>
             </button>
-            <div id="sistemas" class="collapse content-collapse">
+            <div id="sistemas" class="collapse content-collapse" #collapseSistemas="ngbCollapse" [(ngbCollapse)]="sistemasIsCollapsed">
               <div class="row">
                 <p>
                   <strong>
