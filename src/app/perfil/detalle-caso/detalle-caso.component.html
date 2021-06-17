@@ -90,14 +90,14 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn-collapse" data-toggle="collapse" data-target="#antecedentes">
+            <button class="btn-collapse" (click)="collapseAntecedentes.toggle()" [attr.aria-expanded]="!antecedentesIsCollapsed">
               <p>
                 <strong>
                   Antecedentes
                 </strong>
               </p>
             </button>
-            <div id="antecedentes" class="collapse content-collapse">
+            <div id="antecedentes" class="collapse content-collapse" #collapseAntecedentes="ngbCollapse" [(ngbCollapse)]="antecedentesIsCollapsed">
               <div *ngIf="antecedentes.length != 0">
                 <div *ngFor="let preg of antecedentes; let i = index">
                   <div class="col-md-4 col-sm-12 text-left">
