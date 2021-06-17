@@ -1,6 +1,6 @@
 <ng-container *ngIf="!isReady">
     <p>Cargando... {{ percentage }}%</p>
-    <p>Actualizado 17-junio-2021 2:00pm</p>
+    <p>Actualizado 17-junio-2021 2:10pm</p>
 </ng-container>
 
 <div #unityEl id="gameContainer" 
@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-md-12">
       <p>{{name}} - {{username}}</p>
-      <p>v0.13.5</p>
+      <p>v0.13.6</p>
     </div>
   </div>
   <div class="row">
@@ -19,7 +19,7 @@
       <button class="btn btn-login" routerLink="/perfil">
         Perfil
       </button>
-
+      &nbsp;&nbsp;&nbsp;
       <button class="btn btn-logout" (click)="logout()">
         Sign out
       </button>

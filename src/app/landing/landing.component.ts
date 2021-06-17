@@ -30,8 +30,6 @@ export class LandingComponent implements OnInit {
           this.rdb_users.correoActual = this.username;
           this.rdb_users.nombreActual = this.name;
 
-          this.callProfile();
-
           this.rdb_users.getEstudiantePorCorreo(this.username).toPromise().then(
             resp => {
               if (resp == null) {
@@ -74,13 +72,6 @@ export class LandingComponent implements OnInit {
     this.msalService.instance.setActiveAccount(null);
     this.rdb_users.correoActual = "";
     this.rdb_users.nombreActual = "";
-  }
-
-  //Recupera la información del perfil desde la API de Microsoft
-  callProfile() {
-    this.httpClient.get("https://graph.microsoft.com/v1.0/me").subscribe( resp => {
-      console.log(resp);
-    });
   }
 
 }
