@@ -50,14 +50,14 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn-collapse" (click)="collapseNotas.toggle()" [attr.aria-expanded]="!isCollapsed">
+            <button class="btn-collapse" (click)="collapseNotas.toggle()" [attr.aria-expanded]="!notasIsCollapsed">
               <p>
                 <strong>
                   Notas escritas
                 </strong>
               </p>
             </button>
-            <div id="notas-tomadas" class="collapse content-collapse" #collapseNotas="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+            <div id="notas-tomadas" class="collapse content-collapse" #collapseNotas="ngbCollapse" [(ngbCollapse)]="notasIsCollapsed">
               <pre>{{ notas }}</pre>
             </div>
           </div>
