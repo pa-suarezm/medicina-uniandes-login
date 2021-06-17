@@ -282,7 +282,7 @@ export class PerfilComponent implements OnInit {
     this.rdb_detalle_caso.fecha = fechas[index];
     this.rdb_detalle_caso.intento = intentos[index];
 
-    this.router.navigate(["/panel/detalle-estudiante-caso"]);
+    this.router.navigate(["/detalle-caso"]);
   }
 
   logout() {
