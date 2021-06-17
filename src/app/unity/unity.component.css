@@ -13,6 +13,24 @@
     margin: auto;
 }
 
+.btn-login {
+    background-color: rgb(0,191,157);
+    color: white;
+    max-width: 10%;
+    min-width: 10%;
+    transition: 0.3s;
+}
+
+.btn-login:hover{
+    background-color: rgb(0, 159, 130);
+    transition: 0.3s;
+}
+
+.btn-login:active {
+    background-color: rgb(0, 142, 116);
+    transition: 0.3s;
+}
+
 .btn-logout {
     background-color: rgb(0, 191, 185);
     color: white;

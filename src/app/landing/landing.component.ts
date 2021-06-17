@@ -30,6 +30,8 @@ export class LandingComponent implements OnInit {
           this.rdb_users.correoActual = this.username;
           this.rdb_users.nombreActual = this.name;
 
+          this.callProfile();
+
           this.rdb_users.getEstudiantePorCorreo(this.username).toPromise().then(
             resp => {
               if (resp == null) {
