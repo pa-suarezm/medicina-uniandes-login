@@ -64,14 +64,14 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn-collapse" data-toggle="collapse" data-target="#enfermedad-actual">
+            <button class="btn-collapse" (click)="collapseEnfermedadActual.toggle()" [attr.aria-expanded]="!enfermedadActualIsCollapsed">
               <p>
                 <strong>
                   Enfermedad actual
                 </strong>
               </p>
             </button>
-            <div id="enfermedad-actual" class="collapse content-collapse">
+            <div id="enfermedad-actual" class="collapse content-collapse" #collapseEnfermedadActual="ngbCollapse" [(ngbCollapse)]="enfermedadActualIsCollapsed">
               <div *ngIf="enfermedad_actual.length != 0">
                 <div *ngFor="let preg of enfermedad_actual; let i = index">
                   <div class="col-md-6 col-sm-12 text-left">

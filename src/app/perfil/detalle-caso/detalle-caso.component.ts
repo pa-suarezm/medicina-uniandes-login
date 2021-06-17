@@ -87,7 +87,14 @@ export class DetalleCasoComponent implements OnInit {
   urlFirebasePts: string = "https://medicina-uniandes-default-rtdb.firebaseio.com/especialidades/";
 
   //Flags para controlar elementos colapsables
-  public notasIsCollapsed = false;
+  public notasIsCollapsed = true;
+  public enfermedadActualIsCollapsed = true;
+  public antecedentesIsCollapsed = true;
+  public sistemasIsCollapsed = true;
+  public impresionIsCollapsed = true;
+  public ayudasIsCollapsed = true;
+  public diagnosticoIsCollapsed = true;
+  public tratamientoIsCollapsed = true;
 
   constructor(
     private firebase_users: RdbUsersService,
