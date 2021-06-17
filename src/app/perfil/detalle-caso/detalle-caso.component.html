@@ -144,7 +144,9 @@
                   </div>
                 </div>
                 <div *ngIf="cardiovascular.length == 0">
-                  <p>No hubo ninguna selección en Sistema cardiovascular</p>
+                  <div class="col-md-12">
+                    <p>No hubo ninguna selección en Sistema cardiovascular</p>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -165,7 +167,9 @@
                   </div>
                 </div>
                 <div *ngIf="respiratorio.length == 0">
-                  <p>No hubo ninguna selección en Sistema respiratorio</p>
+                  <div class="col-md-12">
+                    <p>No hubo ninguna selección en Sistema respiratorio</p>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -186,7 +190,9 @@
                   </div>
                 </div>
                 <div *ngIf="genitourinario.length == 0">
-                  <p>No hubo ninguna selección en Sistema genitourinario</p>
+                  <div class="col-md-12">
+                    <p>No hubo ninguna selección en Sistema genitourinario</p>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -207,7 +213,9 @@
                   </div>
                 </div>
                 <div *ngIf="endocrino.length == 0">
-                  <p>No hubo ninguna selección en Sistema endocrino</p>
+                  <div class="col-md-12">
+                    <p>No hubo ninguna selección en Sistema endocrino</p>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -228,7 +236,9 @@
                   </div>
                 </div>
                 <div *ngIf="gastrointestinal.length == 0">
-                  <p>No hubo ninguna selección en Sistema gastrointestinal</p>
+                  <div class="col-md-12">
+                    <p>No hubo ninguna selección en Sistema gastrointestinal</p>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -249,7 +259,9 @@
                   </div>
                 </div>
                 <div *ngIf="osteomuscular.length == 0">
-                  <p>No hubo ninguna selección en Sistema osteomuscular</p>
+                  <div class="col-md-12">
+                    <p>No hubo ninguna selección en Sistema osteomuscular</p>
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -258,6 +270,7 @@
                     Sistema nervioso
                   </strong>
                 </p>
+                <br />
                 <div *ngIf="nervioso.length != 0">
                   <div *ngFor="let preg of nervioso">
                     <div class="col-md-6 col-sm-12 text-left">
@@ -269,7 +282,9 @@
                   </div>
                 </div>
                 <div *ngIf="nervioso.length == 0">
-                  <p>No hubo ninguna selección en Sistema nervioso</p>
+                  <div class="col-md-12">
+                    <p>No hubo ninguna selección en Sistema nervioso</p>
+                  </div>
                 </div>
               </div>
             </div>
