@@ -269,14 +269,14 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn-collapse" data-toggle="collapse" data-target="#impresion">
+            <button class="btn-collapse" (click)="collapseImpresion.toggle()" [attr.aria-expanded]="!impresionIsCollapsed">
               <p>
                 <strong>
                   Impresión diagnóstica
                 </strong>
               </p>
             </button>
-            <div id="impresion" class="collapse content-collapse">
+            <div id="impresion" class="collapse content-collapse" #collapseImpresion="ngbCollapse" [(ngbCollapse)]="impresionIsCollapsed">
               <div *ngFor="let diag of impresion_diagnostica; let i = index">
                 <div class="col-md-12 text-left">
                   <p>
@@ -290,14 +290,14 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn-collapse" data-toggle="collapse" data-target="#ayudas-diagnosticas">
+            <button class="btn-collapse" (click)="collapseAyudas.toggle()" [attr.aria-expanded]="!ayudasIsCollapsed">
               <p>
                 <strong>
                   Ayudas diagnósticas
                 </strong>
               </p>
             </button>
-            <div id="ayudas-diagnosticas" class="collapse content-collapse">
+            <div id="ayudas-diagnosticas" class="collapse content-collapse" #collapseAyudas="ngbCollapse" [(ngbCollapse)]="ayudasIsCollapsed">
               <div class="row">
                 <div class="col-12">
                   <p>
@@ -369,14 +369,14 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn-collapse" data-toggle="collapse" data-target="#diagnostico-final">
+            <button class="btn-collapse" (click)="collapseDiagnostico.toggle()" [attr.aria-expanded]="!diagnosticoIsCollapsed">
               <p>
                 <strong>
                   Diagnóstico final
                 </strong>
               </p>
             </button>
-            <div id="diagnostico-final" class="collapse content-collapse">
+            <div id="diagnostico-final" class="collapse content-collapse" #collapseDiagnostico="ngbCollapse" [(ngbCollapse)]="diagnosticoIsCollapsed">
               <div *ngFor="let diag of diagnostico_final; let i = index">
                 <div class="col-md-12 text-left">
                   <p>
@@ -390,14 +390,14 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn-collapse" data-toggle="collapse" data-target="#tratamiento">
+            <button class="btn-collapse" (click)="collapseTratamiento.toggle()" [attr.aria-expanded]="!tratamientoIsCollapsed">
               <p>
                 <strong>
                   Tratamiento
                 </strong>
               </p>
             </button>
-            <div id="tratamiento" class="collapse content-collapse">
+            <div id="tratamiento" class="collapse content-collapse" #collapseTratamiento="ngbCollapse" [(ngbCollapse)]="tratamientoIsCollapsed">
               <div *ngIf="tratamiento.length != 0">
                 <div *ngFor="let preg of tratamiento; let i = index">
                   <div class="col-md-6 col-sm-12 text-left">
