@@ -5,16 +5,6 @@
               <h3><strong>{{ nombre }}</strong></h3>
           </div>
       </div>
-  <div class="row">
-      <div class="col-md-12 text-left">
-        <button routerLink="/simulador" class="btn btn-login">
-            Simulador
-        </button>
-        <button class="btn btn-logout" (click)="logout()">
-            Sign out
-        </button>
-      </div>
-  </div>
   <!--Navegación-->
   <div class="row">
       <div class="col-md-4 text-center nav-col">
@@ -73,35 +63,16 @@
               </div>
               <div class="col-md-4">
                   <h5>Cantidad de casos realizados</h5>
-                  <p>{{ casos.length }} caso<span *ngIf="casos.length != 1">s</span></p>
+                  <p>{{ casos_estudio.length + casos_evaluacion.length }} caso<span *ngIf="casos.length != 1">s</span></p>
               </div>
           </div>
           <div class="row">
               <div class="col-md-12">
                   <h5>Código Uniandes</h5>
-                  <div class="form-group">
-                      <input [(ngModel)]="codigo" type="text" value="" placeholder="Escribe acá el código del estudiante" class="form-control" />
-                  </div>
+                  <p>{{codigo}}</p>
               </div>
           </div>
           <br />
-          <div class="row">
-              <div class="col-md-12 text-left">
-                  <button class="btn btn-success" (click)="guardarCambios()">Guardar cambios</button>
-              </div>
-          </div>
-          <br />
-      </div>
-  </div>
-  <div *ngIf="alert_codigo && codigo != null" class="row ">
-      <br />
-      <div class="col-md-1">
-      </div>
-      <div class="alert alert-danger col-md-10">
-          <h4>
-              <strong>Error:</strong> El código {{ codigo_error }} no es válido. Sólo puede contener números y exactamente 9 caracteres.
-              <i class="material-icons cerrar_alerta" (click)="alert_codigo = false">close</i>
-          </h4>
       </div>
   </div>
   <!--Casos de estudio-->
@@ -215,5 +186,19 @@
               </div>
           </div>
       </div>
-  </div>    
+  </div>  
+  <div class="row">
+    <div class="col-4">
+        <button routerLink="/simulador" class="btn btn-login">
+            Simulador
+        </button>
+    </div>
+    <div class="col-1">
+    </div>
+    <div class="col-4">
+        <button class="btn btn-logout" (click)="logout()">
+            Sign out
+        </button>
+    </div>
+</div>
 </div>

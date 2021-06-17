@@ -23,9 +23,6 @@ export class PerfilComponent implements OnInit {
   codigo: string = "";
   correo: string = "";
 
-  alert_codigo: boolean = false;
-  codigo_error: string = "";
-
   //Casos de estudio realizados
   casos_estudio: string[] = [];
   especialidades_estudio: string[] = [];
@@ -229,57 +226,18 @@ export class PerfilComponent implements OnInit {
     this.renderInfo = true;
     this.renderCasosEstudio = false;
     this.renderCasosEvaluacion = false;
-
-    this.alert_codigo = false;
   }
 
   navegarACasosEstudio() {
     this.renderInfo = false;
     this.renderCasosEstudio = true;
     this.renderCasosEvaluacion = false;
-
-    this.alert_codigo = false;
   }
 
   navegarACasosEvaluacion() {
     this.renderInfo = false;
     this.renderCasosEstudio = false;
     this.renderCasosEvaluacion = true;
-
-    this.alert_codigo = false;
-  }
-
-  alertCodigo(): boolean {
-    return this.codigo.length != 9 && this.codigo.length != 0;
-  }
-
-  guardarCambios() {
-    this.alert_codigo = false;
-
-    if (this.codigo == null) {
-      return;
-    }
-
-    //La expresión regular verifica que sólo tenga números
-    //Por algún motivo, limitar el input para que sólo recibiera números no funcionaba
-    if (this.codigo.length != 9 || !/^\d+$/.test(this.codigo)) {
-      this.alert_codigo = true;
-      this.codigo_error = this.codigo;
-      return;
-    }
-
-    var json_est: string = "{\"código\": " + Number.parseInt(this.codigo) + ",";
-    json_est += "\"nombre\": \"" + this.nombre + "\"}";
-
-    this.rdb_users.putEstudiante(this.correo.split(".").join(","), json_est).toPromise().then(
-      resp => {
-        this.router.navigate(["/panel/estudiantes"]);
-      }
-    ).catch(
-      error => {
-        console.log("Error guardando cambios: " + error);
-      }
-    );
   }
 
   /**
