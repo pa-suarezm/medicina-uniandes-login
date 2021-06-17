@@ -1,0 +1,219 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-6 text-left">
+              <h3><strong>{{ nombre }}</strong></h3>
+          </div>
+      </div>
+  <div class="row">
+      <div class="col-md-12 text-left">
+        <button routerLink="/simulador" class="btn btn-login">
+            Simulador
+        </button>
+        <button class="btn btn-logout" (click)="logout()">
+            Sign out
+        </button>
+      </div>
+  </div>
+  <!--Navegación-->
+  <div class="row">
+      <div class="col-md-4 text-center nav-col">
+          <div *ngIf="!renderInfo" class="card nav-unselected" (click)="navegarAInfo()">
+              <div class="card-content">
+                  <h4 class="nav-title"><strong>Información personal</strong></h4>
+              </div>
+          </div>
+          <div *ngIf="renderInfo" class="card nav-selected">
+              <div class="card-content">
+                  <h4 class="nav-title"><strong>Información personal</strong></h4>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4 text-center nav-col">
+          <div *ngIf="!renderCasosEstudio" class="card nav-unselected" (click)="navegarACasosEstudio()">
+              <div class="card-content">
+                  <h4 class="nav-title"><strong>Casos de estudio</strong></h4>
+              </div>
+          </div>
+          <div *ngIf="renderCasosEstudio" class="card nav-selected">
+              <div class="card-content">
+                  <h4 class="nav-title"><strong>Casos de estudio</strong></h4>
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4 text-center nav-col">
+          <div *ngIf="!renderCasosEvaluacion" class="card nav-unselected" (click)="navegarACasosEvaluacion()">
+              <div class="card-content">
+                  <h4 class="nav-title"><strong>Casos de evaluación</strong></h4>
+              </div>
+          </div>
+          <div *ngIf="renderCasosEvaluacion" class="card nav-selected">
+              <div class="card-content">
+                  <h4 class="nav-title"><strong>Casos de evaluación</strong></h4>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!--Información personal-->
+  <div *ngIf="renderInfo" class="card">
+      <div class="card-content">
+          <div class="row">
+              <div class="col-md-12">
+                  <h4><strong>Editar información</strong></h4>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-4">
+                  <h5>Nombre completo</h5>
+                  <p>{{ nombre }}</p>
+              </div>
+              <div class="col-md-4">
+                  <h5>Correo</h5>
+                  <p>{{ correo }}</p>
+              </div>
+              <div class="col-md-4">
+                  <h5>Cantidad de casos realizados</h5>
+                  <p>{{ casos.length }} caso<span *ngIf="casos.length != 1">s</span></p>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12">
+                  <h5>Código Uniandes</h5>
+                  <div class="form-group">
+                      <input [(ngModel)]="codigo" type="text" value="" placeholder="Escribe acá el código del estudiante" class="form-control" />
+                  </div>
+              </div>
+          </div>
+          <br />
+          <div class="row">
+              <div class="col-md-12 text-left">
+                  <button class="btn btn-success" (click)="guardarCambios()">Guardar cambios</button>
+              </div>
+          </div>
+          <br />
+      </div>
+  </div>
+  <div *ngIf="alert_codigo && codigo != null" class="row ">
+      <br />
+      <div class="col-md-1">
+      </div>
+      <div class="alert alert-danger col-md-10">
+          <h4>
+              <strong>Error:</strong> El código {{ codigo_error }} no es válido. Sólo puede contener números y exactamente 9 caracteres.
+              <i class="material-icons cerrar_alerta" (click)="alert_codigo = false">close</i>
+          </h4>
+      </div>
+  </div>
+  <!--Casos de estudio-->
+  <div *ngIf="renderCasosEstudio">
+      <div *ngIf="casos_estudio.length == 0" class="row text-center">
+          <h5>No se encontraron casos de tipo Estudio para {{ correo }}</h5>
+      </div>
+      <div *ngIf="casos_estudio.length != 0">
+          <div *ngFor="let caso of casos_estudio; let i = index" class="col-sm-12 col-md-6">
+              <div class="card">
+                  <div class="card-content">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <h5>
+                                  <strong>{{ especialidades_estudio[i] }} - {{ caso }} (Intento #{{ intentos_estudio[i] }})</strong>
+                              </h5>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-1">
+                              <i class="material-icons">schedule</i> 
+                          </div>
+                          <div class="col-md-11">
+                              <p>Tiempo (mm:ss): {{ tiempos_estudio[i] }}</p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-1">
+                              <i class="material-icons">search</i> 
+                          </div>
+                          <div class="col-md-11">
+                              <p>Diagnóstico: {{ diagnosticos_estudio[i] }}</p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-1">
+                              <i class="material-icons">star_border</i> 
+                          </div>
+                          <div class="col-md-11">
+                              <p>Puntaje: {{ puntajes_estudio[i] }} puntos</p>
+                          </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                          <div class="col-md-7 text-left">
+                              <p>Fecha: {{ fechas_estudio[i] }}</p>
+                          </div>
+                          <!--
+                          <div class="col-md-5 text-right">
+                              <p (click) = "verDetalleCasoResuelto(i, 'Estudio')">Ver más</p>
+                          </div>
+                          -->
+                      </div>                            
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!--Casos de evaluación-->
+  <div *ngIf="renderCasosEvaluacion">
+      <div *ngIf="casos_evaluacion.length == 0" class="row text-center">
+          <h5>No se encontraron casos de tipo Evaluación para {{ correo }}</h5>
+      </div>
+      <div *ngIf="casos_evaluacion.length != 0">
+          <div *ngFor="let caso of casos_evaluacion; let i = index" class="col-sm-12 col-md-6">
+              <div class="card">
+                  <div class="card-content">
+                      <div class="row">
+                          <div class="col-md-12">
+                              <h5>
+                                  <strong>{{ especialidades_evaluacion[i] }} - {{ caso }} (Intento #{{ intentos_evaluacion[i] }} de 2)</strong>
+                              </h5>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-1">
+                              <i class="material-icons">schedule</i> 
+                          </div>
+                          <div class="col-md-11">
+                              <p>Tiempo (mm:ss): {{ tiempos_evaluacion[i] }}</p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-1">
+                              <i class="material-icons">search</i> 
+                          </div>
+                          <div class="col-md-11">
+                              <p>Diagnóstico: {{ diagnosticos_evaluacion[i] }}</p>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-1">
+                              <i class="material-icons">star_border</i> 
+                          </div>
+                          <div class="col-md-11">
+                              <p>Puntaje: {{ puntajes_evaluacion[i] }} puntos</p>
+                          </div>
+                      </div>
+                      <hr />
+                      <div class="row">
+                          <div class="col-md-7 text-left">
+                              <p>Fecha: {{ fechas_evaluacion[i] }}</p>
+                          </div>
+                          <!--
+                          <div class="col-md-5 text-right">
+                              <p (click) = "verDetalleCasoResuelto(i, 'Evaluación')">Ver más</p>
+                          </div>
+                          -->
+                      </div>                            
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>    
+</div>

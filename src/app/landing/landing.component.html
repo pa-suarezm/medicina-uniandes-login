@@ -24,9 +24,14 @@
     </div>
     <div *ngIf="isLoggedIn()" class="row">
         <div class="col-md-12 text-center">
-            <h5><strong>Usuario:</strong> {{username}}</h5>
+            <h4>{{name}}</h4>
+            <h5>{{username}}</h5>
+            
             <button routerLink="/simulador" class="btn btn-login">
                 Simulador
+            </button>
+            <button routerLink="/perfil" class="btn btn-login">
+                Perfil
             </button>
             <br />
             <br />

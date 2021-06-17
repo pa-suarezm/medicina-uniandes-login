@@ -1,0 +1,120 @@
+.card {
+  margin: 0px;
+  margin-bottom: 10px;
+  padding: 0px;
+}
+
+.main-content {
+  margin: 0px;
+}
+
+.form-group {
+  margin-top: 12px;
+}
+
+a {
+  color: darkslategray;
+}
+
+.card-content {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 10px;
+  padding-left: 10px;
+
+  color: darkslategray;
+}
+
+.form-control {
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+hr {
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-toggle {
+  background-color: white;
+  color: darkslategray;
+  width: 100%;
+}
+
+.nav-col {
+  padding: 2px;
+}
+
+.nav-selected {
+  background-color: darkturquoise;
+  color: white;
+}
+
+.nav-unselected {
+  background-color: lightgray;
+  color: white;
+  transition: 0.2s;
+}
+
+.nav-unselected:hover {
+  background-color: lightslategray;
+  transition: 0.2s;
+}
+
+.nav-title {
+  color: white;
+}
+
+.btn-adjuntar {
+  background-color: white;
+  color: darkslategray;
+  width: 100%;
+}
+
+.cerrar_alerta {
+  float: right;
+}
+
+.alert {
+  margin: auto;
+  padding-bottom: 6px;
+}
+
+.adjuntar-recursos {
+  display: none;
+}
+
+.btn-login {
+  background-color: rgb(0,191,157);
+  color: white;
+  max-width: 30%;
+  min-width: 30%;
+  transition: 0.3s;
+}
+
+.btn-login:hover{
+  background-color: rgb(0, 159, 130);
+  transition: 0.3s;
+}
+
+.btn-login:active {
+  background-color: rgb(0, 142, 116);
+  transition: 0.3s;
+}
+
+.btn-logout {
+  background-color: rgb(0, 191, 185);
+  color: white;
+  max-width: 20%;
+  min-width: 20%;
+  transition: 0.3s;
+}
+
+.btn-logout:hover{
+  background-color: rgb(0, 151, 159);
+  transition: 0.3s;
+}
+
+.btn-logout:active {
+  background-color: rgb(0, 140, 142);
+  transition: 0.3s;
+}
