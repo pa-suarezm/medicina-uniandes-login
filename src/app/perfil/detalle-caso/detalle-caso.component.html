@@ -1,0 +1,420 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-left">
+        <h3><strong>{{nombre_estudiante}}</strong></h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 text-left">
+        <p><a routerLink="/perfil">Perfil</a>/<strong>{{nombre_caso}}</strong></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5 text-left">
+        <h4><strong>{{especialidad}} - {{nombre_caso}} (Intento #{{intento}})</strong></h4>
+      </div>
+      <div class="col-md-7 text-right">
+        <h5>Fecha: {{fecha}}</h5>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-1">
+                <i class="material-icons">schedule</i> 
+              </div>
+              <div class="col-md-11">
+                Tiempo (mm:ss): {{tiempo_caso}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-1">
+                <i class="material-icons">search</i> 
+              </div>
+              <div class="col-md-11">
+                Diagnóstico: {{diagnostico}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-1">
+                <i class="material-icons">star_border</i> 
+              </div>
+              <div class="col-md-11">
+                Puntaje: {{puntaje}} puntos
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn-collapse" data-toggle="collapse" data-target="#notas-tomadas">
+              <p>
+                <strong>
+                  Notas escritas
+                </strong>
+              </p>
+            </button>
+            <div id="notas-tomadas" class="collapse content-collapse">
+              <pre>{{ notas }}</pre>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn-collapse" data-toggle="collapse" data-target="#enfermedad-actual">
+              <p>
+                <strong>
+                  Enfermedad actual
+                </strong>
+              </p>
+            </button>
+            <div id="enfermedad-actual" class="collapse content-collapse">
+              <div *ngIf="enfermedad_actual.length != 0">
+                <div *ngFor="let preg of enfermedad_actual; let i = index">
+                  <div class="col-md-6 col-sm-12 text-left">
+                    <p>
+                      <img class="icono-preg" [src]="icon_enfermedad_actual[i]">
+                      {{preg}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="enfermedad_actual.length == 0">
+                <p>No hubo ninguna selección en Enfermedad Actual</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn-collapse" data-toggle="collapse" data-target="#antecedentes">
+              <p>
+                <strong>
+                  Antecedentes
+                </strong>
+              </p>
+            </button>
+            <div id="antecedentes" class="collapse content-collapse">
+              <div *ngIf="antecedentes.length != 0">
+                <div *ngFor="let preg of antecedentes; let i = index">
+                  <div class="col-md-4 col-sm-12 text-left">
+                    <p>
+                      <img class="icono-preg" [src]="icon_antecedentes[i]">
+                      {{preg}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="antecedentes.length == 0">
+                <p>No hubo ninguna selección en Antecedentes</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn-collapse" data-toggle="collapse" data-target="#sistemas">
+              <p>
+                <strong>
+                  Revisión por sistemas
+                </strong>
+              </p>
+            </button>
+            <div id="sistemas" class="collapse content-collapse">
+              <div class="row">
+                <p>
+                  <strong>
+                    Sistema cardiovascular
+                  </strong>
+                </p>
+                <div *ngIf="cardiovascular.length != 0">
+                  <div *ngFor="let preg of cardiovascular">
+                    <div class="col-md-6 col-sm-12 text-left">
+                      <p>
+                        <img class="icono-preg" [src]="icon_cardiovascular">
+                        {{preg}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="cardiovascular.length == 0">
+                  <p>No hubo ninguna selección en Sistema cardiovascular</p>
+                </div>
+              </div>
+              <div class="row">
+                <p>
+                  <strong>
+                    Sistema respiratorio
+                  </strong>
+                </p>
+                <div *ngIf="respiratorio.length != 0">
+                  <div *ngFor="let preg of respiratorio">
+                    <div class="col-md-6 col-sm-12 text-left">
+                      <p>
+                        <img class="icono-preg" [src]="icon_respiratorio">
+                        {{preg}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="respiratorio.length == 0">
+                  <p>No hubo ninguna selección en Sistema respiratorio</p>
+                </div>
+              </div>
+              <div class="row">
+                <p>
+                  <strong>
+                    Sistema genitourinario
+                  </strong>
+                </p>
+                <div *ngIf="genitourinario.length != 0">
+                  <div *ngFor="let preg of genitourinario">
+                    <div class="col-md-6 col-sm-12 text-left">
+                      <p>
+                        <img class="icono-preg" [src]="icon_genitourinario">
+                        {{preg}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="genitourinario.length == 0">
+                  <p>No hubo ninguna selección en Sistema genitourinario</p>
+                </div>
+              </div>
+              <div class="row">
+                <p>
+                  <strong>
+                    Sistema endocrino
+                  </strong>
+                </p>
+                <div *ngIf="endocrino.length != 0">
+                  <div *ngFor="let preg of endocrino">
+                    <div class="col-md-6 col-sm-12 text-left">
+                      <p>
+                        <img class="icono-preg" [src]="icon_endocrino">
+                        {{preg}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="endocrino.length == 0">
+                  <p>No hubo ninguna selección en Sistema endocrino</p>
+                </div>
+              </div>
+              <div class="row">
+                <p>
+                  <strong>
+                    Sistema gastrointestinal
+                  </strong>
+                </p>
+                <div *ngIf="gastrointestinal.length != 0">
+                  <div *ngFor="let preg of gastrointestinal">
+                    <div class="col-md-6 col-sm-12 text-left">
+                      <p>
+                        <img class="icono-preg" [src]="icon_gastrointestinal">
+                        {{preg}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="gastrointestinal.length == 0">
+                  <p>No hubo ninguna selección en Sistema gastrointestinal</p>
+                </div>
+              </div>
+              <div class="row">
+                <p>
+                  <strong>
+                    Sistema osteomuscular
+                  </strong>
+                </p>
+                <div *ngIf="osteomuscular.length != 0">
+                  <div *ngFor="let preg of osteomuscular">
+                    <div class="col-md-6 col-sm-12 text-left">
+                      <p>
+                        <img class="icono-preg" [src]="icon_osteomuscular">
+                        {{preg}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="osteomuscular.length == 0">
+                  <p>No hubo ninguna selección en Sistema osteomuscular</p>
+                </div>
+              </div>
+              <div class="row">
+                <p>
+                  <strong>
+                    Sistema nervioso
+                  </strong>
+                </p>
+                <div *ngIf="nervioso.length != 0">
+                  <div *ngFor="let preg of nervioso">
+                    <div class="col-md-6 col-sm-12 text-left">
+                      <p>
+                        <img class="icono-preg" [src]="icon_nervioso">
+                        {{preg}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="nervioso.length == 0">
+                  <p>No hubo ninguna selección en Sistema nervioso</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn-collapse" data-toggle="collapse" data-target="#impresion">
+              <p>
+                <strong>
+                  Impresión diagnóstica
+                </strong>
+              </p>
+            </button>
+            <div id="impresion" class="collapse content-collapse">
+              <div *ngFor="let diag of impresion_diagnostica; let i = index">
+                <div class="col-md-12 text-left">
+                  <p>
+                    <img class="icono-preg" [src]="icon_impresion[i]">
+                    <strong> {{ diagnosticos[i] }}:</strong> {{ diag }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn-collapse" data-toggle="collapse" data-target="#ayudas-diagnosticas">
+              <p>
+                <strong>
+                  Ayudas diagnósticas
+                </strong>
+              </p>
+            </button>
+            <div id="ayudas-diagnosticas" class="collapse content-collapse">
+              <div class="row">
+                <div class="col-12">
+                  <p>
+                    <strong>
+                      Laboratorios
+                    </strong>
+                  </p>
+                </div>
+                <div *ngIf="laboratorios.length != 0">
+                  <div *ngFor="let preg of laboratorios; let i = index">
+                    <div class="col-md-6 col-sm-12 text-left">
+                      <p>
+                        <img class="icono-preg" [src]="icon_lab[i]">
+                        {{preg}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="laboratorios.length == 0">
+                  <p>No hubo ninguna selección en Laboratorios</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <p>
+                    <strong>
+                      Imágenes diagnósticas
+                    </strong>
+                  </p>
+                </div>
+                <div *ngIf="imgs_diagnosticas.length != 0">
+                  <div *ngFor="let preg of imgs_diagnosticas; let i = index">
+                    <div class="col-md-6 col-sm-12 text-left">
+                      <p>
+                        <img class="icono-preg" [src]="icon_imgs_diag[i]">
+                        {{preg}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="imgs_diagnosticas.length == 0">
+                  <p>No hubo ninguna selección en Imágenes diagnósticas</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <p>
+                    <strong>
+                      Otras ayudas
+                    </strong>
+                  </p>
+                </div>
+                <div *ngIf="otras_ayudas.length != 0">
+                  <div *ngFor="let preg of otras_ayudas; let i = index">
+                    <div class="col-md-6 col-sm-12 text-left">
+                      <p>
+                        <img class="icono-preg" [src]="icon_otras[i]">
+                        {{preg}}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="otras_ayudas.length == 0">
+                  <p>No hubo ninguna selección en Otras ayudas</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn-collapse" data-toggle="collapse" data-target="#diagnostico-final">
+              <p>
+                <strong>
+                  Diagnóstico final
+                </strong>
+              </p>
+            </button>
+            <div id="diagnostico-final" class="collapse content-collapse">
+              <div *ngFor="let diag of diagnostico_final; let i = index">
+                <div class="col-md-12 text-left">
+                  <p>
+                    <img class="icono-preg" [src]="icon_diag_final[i]">
+                    <strong> {{ diagnosticos[i] }}:</strong> {{ diag }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn-collapse" data-toggle="collapse" data-target="#tratamiento">
+              <p>
+                <strong>
+                  Tratamiento
+                </strong>
+              </p>
+            </button>
+            <div id="tratamiento" class="collapse content-collapse">
+              <div *ngIf="tratamiento.length != 0">
+                <div *ngFor="let preg of tratamiento; let i = index">
+                  <div class="col-md-6 col-sm-12 text-left">
+                    <p>
+                      <img class="icono-preg" [src]="icon_tratamiento[i]">
+                      {{preg}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="tratamiento.length == 0">
+                <p>No hubo ninguna selección en Tratamiento</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

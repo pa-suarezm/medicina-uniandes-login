@@ -1,0 +1,100 @@
+.card {
+  margin: 0px;
+}
+
+.main-content {
+  margin: 0px;
+}
+
+.form-group {
+  margin: 0px;
+}
+
+.card-content {
+  padding-top: 1em;
+  padding-bottom: 2em;
+  padding-right: 0.7em;
+  padding-left: 0.7em;
+
+  color: darkslategray;
+}
+
+.dropdown-toggle {
+  background-color: white;
+  color: darkslategray;
+  width: 100%;
+}
+
+a {
+  color: darkslategray;
+}
+
+.card-secciones {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+}
+
+.title-seccion {
+  text-align: left;
+  width: 50%;
+  margin-right: 0px;
+}
+
+.img-listo {
+  position: absolute;
+  right: 5%;
+  top: 12%;
+  width:60px;
+  margin-bottom: 7px;
+}
+
+.cerrar_alerta {
+  float: right;
+}
+
+.alert {
+  margin: auto;
+  padding-bottom: 6px;
+}
+
+label {
+  color: darkslategray;
+  margin-bottom: 0px;
+}
+
+.btn-collapse {
+  width: 100%;
+  text-align: left;
+
+  margin-top: 1em;
+
+  padding-left: 0.7em;
+
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+  background-color: white;
+
+  border-radius: 5px;
+  border-color: lightgrey;
+}
+
+.btn-collapse > p {
+  margin-bottom: 0px;
+}
+
+.collapse, .collapsing {
+  margin-top: 0.7em;
+  margin-left: 1.5em;
+}
+
+.icono-preg {
+  width: 20px;
+  max-width: 100%;
+  height: auto;
+}
+
+div > p {
+  vertical-align: middle;
+}

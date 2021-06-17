@@ -30,6 +30,7 @@ import {
   BrowserCacheLocation,
 } from "@azure/msal-browser";
 import { PerfilComponent } from './perfil/perfil.component';
+import { DetalleCasoComponent } from './perfil/detalle-caso/detalle-caso.component';
 
 export function MSALInstanceFactory(): IPublicClientApplication {
 
@@ -73,7 +74,8 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     UnityComponent,
     LandingComponent,
     LoginFailedComponent,
-    PerfilComponent
+    PerfilComponent,
+    DetalleCasoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
+import { RdbCasoResueltoService } from '../services/rdb-caso-resuelto.service';
 import { RdbCasosService } from '../services/rdb-casos.service';
 import { RdbUsersService } from '../services/rdb-users.service';
 
@@ -15,6 +16,7 @@ export class PerfilComponent implements OnInit {
     private router: Router,
     private rdb_users: RdbUsersService,
     private rdb_casos: RdbCasosService,
+    private rdb_detalle_caso: RdbCasoResueltoService,
     private msalService: MsalService
   ) { }
 
@@ -47,14 +49,12 @@ export class PerfilComponent implements OnInit {
   renderCasosEvaluacion: boolean = false;
 
   ngOnInit(): void {
-    /*
-    this.firebase_rdb_detalle_caso.diagnostico = "";
-    this.firebase_rdb_detalle_caso.especialidad = "";
-    this.firebase_rdb_detalle_caso.puntaje = "";
-    this.firebase_rdb_detalle_caso.tiempo = "";
-    this.firebase_rdb_detalle_caso.titulo = "";
-    this.firebase_rdb_detalle_caso.fecha = "";
-    */
+    this.rdb_detalle_caso.diagnostico = "";
+    this.rdb_detalle_caso.especialidad = "";
+    this.rdb_detalle_caso.puntaje = "";
+    this.rdb_detalle_caso.tiempo = "";
+    this.rdb_detalle_caso.titulo = "";
+    this.rdb_detalle_caso.fecha = "";
 
     if (this.rdb_users.correoActual.trim() == "" || 
         this.rdb_users.nombreActual.trim() == "") {
@@ -245,7 +245,7 @@ export class PerfilComponent implements OnInit {
    * guardados para identificar el caso necesario
    * @param index La posición en el arreglo correspondiente de casos para extraer la información
    * @param modo El modo del caso (i.e. "Estudio" o "Evaluación")
-   
+   */
   verDetalleCasoResuelto(index: number, modo: string) {
     var diagnosticos;
     var especialidades;
@@ -274,17 +274,16 @@ export class PerfilComponent implements OnInit {
       intentos = this.intentos_estudio;
     }
 
-    this.firebase_rdb_detalle_caso.diagnostico = diagnosticos[index];
-    this.firebase_rdb_detalle_caso.especialidad = especialidades[index];
-    this.firebase_rdb_detalle_caso.puntaje = puntajes[index];
-    this.firebase_rdb_detalle_caso.tiempo = tiempos[index];
-    this.firebase_rdb_detalle_caso.titulo = casos[index];
-    this.firebase_rdb_detalle_caso.fecha = fechas[index];
-    this.firebase_rdb_detalle_caso.intento = intentos[index];
+    this.rdb_detalle_caso.diagnostico = diagnosticos[index];
+    this.rdb_detalle_caso.especialidad = especialidades[index];
+    this.rdb_detalle_caso.puntaje = puntajes[index];
+    this.rdb_detalle_caso.tiempo = tiempos[index];
+    this.rdb_detalle_caso.titulo = casos[index];
+    this.rdb_detalle_caso.fecha = fechas[index];
+    this.rdb_detalle_caso.intento = intentos[index];
 
     this.router.navigate(["/panel/detalle-estudiante-caso"]);
   }
-  */
 
   logout() {
     this.msalService.logout();
